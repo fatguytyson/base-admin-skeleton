@@ -23,12 +23,12 @@ class AppUserToggleActiveCommand extends ContainerAwareCommand
     {
         $username = $input->getArgument('username');
 
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-        $user = $em->getRepository('AppBundle:User')->findOneByUsername($username);
+        $um = $this->getContainer()->get('app.user_manager');
+        $user = $um->findUserByUsernameOrEmail($username);
 
         if ($user) {
-            $user->setIsActive(!$user->isActive());
-            $em->flush();
+            $user->setEnabled(!$user->isEnabled());
+            $um->updateUser($user);
             $output->writeln('User Toggled.');
             return;
         }

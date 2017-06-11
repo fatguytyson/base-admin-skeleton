@@ -25,8 +25,8 @@ class AppUserResetPasswordCommand extends ContainerAwareCommand
         $username = $input->getArgument('username');
 
         $qhelper = $this->getHelper('question');
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-        $user = $em->getRepository('AppBundle:User')->findOneByUsername($username);
+        $um = $this->getContainer()->get('app.user_manager');
+        $user = $um->findUserByUsernameOrEmail($username);
 
         if ($user) {
             $question = new Question('Enter a Password: ', null);
@@ -43,8 +43,8 @@ class AppUserResetPasswordCommand extends ContainerAwareCommand
             $question->setHiddenFallback(false);
             $password = $qhelper->ask($input, $output, $question);
 
-            $user->setPassword(password_hash($password, PASSWORD_BCRYPT, ['cost' => 13]));
-            $em->flush();
+            $user->setPlainPassword($password);
+            $um->updateUser($user);
             $output->writeln('Password reset.');
             return;
         }

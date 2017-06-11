@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -25,9 +26,10 @@ class AppUserListCommand extends ContainerAwareCommand
         $users = $em->getRepository('AppBundle:User')->findAll();
 
         $table = new Table($output);
-        $table->setHeaders(['Username','Email','Active']);
+        $table->setHeaders(['Username','Email','Enabled']);
+        /** @var User $user */
         foreach ($users as $user)
-            $table->addRow([$user->getUsername(), $user->getEmail(), $user->isActive()?'Active':'Locked Out']);
+            $table->addRow([$user->getUsername(), $user->getEmail(), $user->isEnabled()?'Enabled':'Disabled']);
         $table->render();
     }
 }

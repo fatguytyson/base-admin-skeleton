@@ -18,6 +18,8 @@ class AppUserCreateCommand extends ContainerAwareCommand
             ->setDescription('Creates a User.')
             ->addOption('username', 'u', InputOption::VALUE_OPTIONAL, 'Username for the new user.')
             ->addOption('email', 'm', InputOption::VALUE_OPTIONAL, 'Email for the new user.')
+            ->addOption('admin', null, InputOption::VALUE_NONE, 'Set User as Admin.')
+            ->addOption('super-admin', null, InputOption::VALUE_NONE, 'Set User as Super-Admin.')
         ;
     }
 
@@ -71,11 +73,18 @@ class AppUserCreateCommand extends ContainerAwareCommand
         $question->setHiddenFallback(false);
         $password = $qhelper->ask($input, $output, $question);
 
-        $em = $this->getContainer()->get('doctrine.orm.default_entity_manager');
-        $user = new User();
-        $user->setUsername($username)->setEmail($email)->setIsActive(true)->setPassword(password_hash($password, PASSWORD_BCRYPT, ['cost' => 13]));
-        $em->persist($user);
-        $em->flush();
+        $role = 'ROLE_USER';
+        if ($input->getOption('admin')) {
+            $role = 'ROLE_ADMIN';
+        }
+        if ($input->getOption('super-admin')) {
+            $role = 'ROLE_SUPER_ADMIN';
+        }
+
+        $um = $this->getContainer()->get('app.user_manager');
+        $user = $um->createUser();
+        $user->setUsername($username)->setEmail($email)->setPlainPassword($password)->setEnabled(true)->setRoles([$role]);
+        $um->updateUser($user);
         $output->writeln('User Created!');
     }
 
