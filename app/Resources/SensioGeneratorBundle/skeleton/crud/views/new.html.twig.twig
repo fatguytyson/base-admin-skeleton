@@ -1,0 +1,25 @@
+{% block extends %}
+{{ "{% extends 'admin.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block content %}" }}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">{{ entity_singularized|capitalize }} creation</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+    {{ '{{ form_start(form) }}' }}
+        {{ '{{ form_widget(form) }}' }}
+        <input type="submit" value="Create" class="btn btn-success" />
+    {{ '{{ form_end(form) }}' }}
+        </div>
+    </div>
+{% set hide_edit, hide_delete = true, true %}
+{{ include('crud/views/others/record_actions.html.twig.twig') -}}
+</div>
+{{ "{% endblock %}" }}
+{% endblock body %}

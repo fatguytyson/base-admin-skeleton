@@ -1,0 +1,54 @@
+{% block extends %}
+{{ "{% extends 'admin.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block content %}" }}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">{{ entity_singularized|capitalize }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <dl>
+        {%- for field, metadata in fields %}
+
+                <dt>{{ field|capitalize }}</dt>
+
+            {%- if metadata.type in ['datetime'] %}
+
+                <dd>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</dd>
+
+            {%- elseif metadata.type in ['date'] %}
+
+                <dd>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d\') }}{% endif %}' }}</dd>
+
+            {%- elseif metadata.type in ['time'] %}
+
+                <dd>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'H:i:s\') }}{% endif %}' }}</dd>
+
+            {%- elseif metadata.type in ['array'] %}
+
+                <dd>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|join(\', \') }}{% endif %}' }}</dd>
+
+            {%- elseif metadata.type in ['boolean'] %}
+
+                <dd>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}Yes{% else %}No{% endif %}' }}</dd>
+
+            {%- else %}
+
+                <dd>{{ '{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' }}' }}</dd>
+
+            {%- endif %}
+
+        {%- endfor %}
+            </dl>
+        </div>
+    </div>
+{% set hide_edit, hide_delete = false, false %}
+{{ include('crud/views/others/record_actions.html.twig.twig') -}}
+</div>
+{{ "{% endblock %}" }}
+{% endblock body %}
