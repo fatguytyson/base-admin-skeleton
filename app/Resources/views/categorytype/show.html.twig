@@ -1,0 +1,39 @@
+{% extends 'admin.html.twig' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">Categorytype</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <dl>
+                <dt>Id</dt>
+                <dd>{{ categoryType.id }}</dd>
+                <dt>Title</dt>
+                <dd>{{ categoryType.title }}</dd>
+                <dt>Flags</dt>
+                <dd>{{ categoryType.flags }}</dd>            </dl>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-x-12">
+        <ul class="list-inline">
+            <li>
+                <a href="{{ path('admin_categorytype_edit', { 'id': categoryType.id }) }}" class="btn btn-warning">Edit</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                {{ form_end(delete_form) }}
+            </li>
+            <li>
+                <a href="{{ path('admin_categorytype_index') }}">Back to the list</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+{% endblock %}

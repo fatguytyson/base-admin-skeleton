@@ -1,0 +1,46 @@
+{% extends 'admin.html.twig' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">Entrytypes list</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entryType in entryTypes %}
+                    <tr>
+                        <td><a href="{{ path('admin_entrytype_show', { 'id': entryType.id }) }}">{{ entryType.id }}</a></td>
+                        <td>{{ entryType.title }}</td>
+                        <td>
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="{{ path('admin_entrytype_show', { 'id': entryType.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_entrytype_edit', { 'id': entryType.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="{{ path('admin_entrytype_new') }}" class="btn btn-success">Create a new entryType</a>
+        </div>
+    </div></div>
+{% endblock %}

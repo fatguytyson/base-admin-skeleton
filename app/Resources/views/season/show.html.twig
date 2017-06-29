@@ -1,0 +1,32 @@
+{% extends 'admin.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="page-header">Season</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <dl>
+                    <dt>Title</dt>
+                    <dd>{{ season.title }}</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger pull-right">
+                {{ form_end(delete_form) }}
+                <a href="{{ path('admin_season_edit', { 'id': season.id }) }}" class="btn btn-warning">Edit</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="{{ path('admin_season_index') }}" class="pull-right">Back to the list</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+<div class="panel-heading">
+    <h3 class="panel-title">
+        {% if is_granted("ROLE_USER") %}
+        <button class="btn btn-xs btn-success pull-right" data-toggle="modal" data-target="#modal" data-link="{{ path('category_add', {'category': category.id}) }}"><i class="fa fa-plus"></i> Add</button>
+        {% endif %}
+        {{ category }}
+    </h3>
+</div>
+<div class="panel-body">
+    {% for entry in data.type.ste %}
+        <button class="btn btn-default{% if entry.type.count and is_granted("ROLE_USER") %} counter-tick" data-link="{{ path('counter_tick', {'csd': entry.csd.0.id}) }}{% endif %}" >{% include 'default/button.html.twig' %}</button>
+    {% endfor %}
+</div>

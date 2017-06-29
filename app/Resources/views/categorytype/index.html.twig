@@ -1,0 +1,48 @@
+{% extends 'admin.html.twig' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">Categorytypes list</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Flags</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for categoryType in categoryTypes %}
+                    <tr>
+                        <td><a href="{{ path('admin_categorytype_show', { 'id': categoryType.id }) }}">{{ categoryType.id }}</a></td>
+                        <td>{{ categoryType.title }}</td>
+                        <td>{{ categoryType.flags }}</td>
+                        <td>
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="{{ path('admin_categorytype_show', { 'id': categoryType.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_categorytype_edit', { 'id': categoryType.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="{{ path('admin_categorytype_new') }}" class="btn btn-success">Create a new categoryType</a>
+        </div>
+    </div></div>
+{% endblock %}
