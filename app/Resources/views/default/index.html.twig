@@ -4,5 +4,24 @@
 
 
 {% block content %}
-    <div class="jumbotron"><h1>Content Block</h1></div>
+    <div class="row">
+        <div class="col-xs-12">
+            {% for category in categories %}
+                <div id="{{ category | lower | replace(' ','_') }}_panel" class="panel panel-default">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/helper.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            {% for category in categories %}
+            $('#{{ category | lower | replace(' ','_') }}_panel').load('{{ path('category_refresh', {category: category.id}) }}');
+            {% endfor %}
+        });
+    </script>
 {% endblock %}

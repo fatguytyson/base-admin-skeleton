@@ -10,9 +10,9 @@ parameters:
     package_image_dir: '%kernel.project_dir%/web/images/tours'
     menu_namespace: AppBundle\Controller
     menu_directory: AppBundle/Controller
-    site_name: Site Skeleton
-    site_domain: site.com
-    admin_email: admin@site.com
+    site_name: Millionaire Tracker
+    site_domain: millionaire.fatguyconsulting.com
+    admin_email: tyson@millionaire.fatguyconsulting.com
 
 framework:
     #esi: ~

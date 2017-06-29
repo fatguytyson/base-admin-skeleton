@@ -17,7 +17,7 @@ security:
             security: false
 
         main:
-            pattern: ^/(user|admin)/
+            pattern: ^/
             form_login:
                 login_path: login
                 check_path: login

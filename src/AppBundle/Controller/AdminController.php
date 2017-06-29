@@ -3,6 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Annotation\Menu;
+use AppBundle\Entity\CategorySTEData;
+use AppBundle\Entity\CategoryType;
+use AppBundle\Entity\SeasonTypeEntry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +23,31 @@ class AdminController extends Controller
      */
     public function dashboardAction()
     {
-        return $this->render('admin/dashboard.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $season = $em->getRepository('AppBundle:Season')->getCurrentID();
+        $data = $em->getRepository('AppBundle:CategoryType')->getSeasonData($season);
+
+        $col = array();
+        /** @var CategoryType $type */
+        foreach($data as $type) {
+            $cat = [];
+            $panelTitle = $type->__toString();
+            $col[$panelTitle] = array('type' => $panelTitle, 'element' => 'panel'.$panelTitle, 'data' => []);
+            /** @var SeasonTypeEntry $ste */
+            foreach($type->getSte() as $ste) {
+                $col[$panelTitle]['data'][$ste->getEntry()->getTitle()] = [];
+                /** @var CategorySTEData $csd */
+                foreach($ste->getCsd() as $csd) {
+                    $cat[] = $csd->getCategory()->getTitle();
+                    $col[$panelTitle]['data'][$ste->getEntry()->getTitle()][] = [
+                        'category' => $csd->getCategory()->getTitle(),
+                        'data' => $type->getFlags() == (CategoryType::PHRASE | CategoryType::PERSON) ? $em->getRepository('AppBundle:Entry')->find($csd->getData())->getTitle() : $csd->getData()
+                    ];
+                }
+            }
+            $col[$panelTitle]['categories'] = array_flip(array_flip($cat));
+        }
+        return $this->render('admin/dashboard.html.twig', ['data' => $col]);
     }
 
     /**

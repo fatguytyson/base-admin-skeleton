@@ -43,7 +43,7 @@ class Menu
     private $order;
 
     /**
-     * @var array
+     * @var string
      */
     private $group;
 
