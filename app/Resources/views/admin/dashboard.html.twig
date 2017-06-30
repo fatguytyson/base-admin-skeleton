@@ -10,6 +10,7 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
+    {% if data is defined %}
     <div class="row">
         <div class="col-xs-12">
             {% for panel in data %}
@@ -59,6 +60,7 @@
         <!-- /.col-lg-8 -->
     </div>
     <!-- /.row -->
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
