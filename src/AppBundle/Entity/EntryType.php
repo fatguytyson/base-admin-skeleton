@@ -73,8 +73,11 @@ class EntryType
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($title = null)
     {
+        if ($title) {
+            $this->title = $title;
+        }
         $this->entries = new \Doctrine\Common\Collections\ArrayCollection();
     }
 

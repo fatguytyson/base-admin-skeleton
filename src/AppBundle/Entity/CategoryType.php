@@ -95,8 +95,14 @@ class CategoryType
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($title = null, $flags = null)
     {
+        if ($title) {
+            $this->title = $title;
+        }
+        if ($flags) {
+            $this->flags = $flags;
+        }
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
