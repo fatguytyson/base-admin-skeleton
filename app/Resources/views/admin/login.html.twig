@@ -6,7 +6,7 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title" align="center">Diamond Dreams Travel - Login</h3>
+                    <h3 class="panel-title" align="center">{{ site_name }} - Login</h3>
                 </div>
                 <div class="panel-body">
                     {% if error %}
@@ -24,7 +24,8 @@
                                 <label>
                                     <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                 </label>
-                                {#<span style="float:right"><a href="forgot_password.php">FORGOT PASSWORD?</a></span></div>#}
+                                {#<span style="float:right"><a href="forgot_password.php">FORGOT PASSWORD?</a></span>#}
+                            </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                         </fieldset>
