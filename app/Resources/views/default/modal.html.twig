@@ -13,6 +13,7 @@
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     <button type="submit" class="btn btn-primary">Save changes</button>
 </div>
+    <script type="text/javascript">modal.find('input:text, textarea').first().focus();</script>
 {{ form_end(form) }}
 {% else %}
     <div class="modal-body">
