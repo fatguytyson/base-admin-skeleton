@@ -52,14 +52,16 @@
                                 <li><a href="{{ path(item.route) }}">{{ item.name }}</a></li>{% endif %}
                         {% endfor %}
                     </ul>
-                    {% if is_granted('ROLE_USER') %}
                     <ul class="nav navbar-nav navbar-right">
-                        <i class="glyphicon glyphicon-star"></i>
+                        {% if is_granted('ROLE_USER') %}
+                        <i class="fa fa-star"></i>
+                        {% else %}
+                        <i class="fa fa-close"></i>
+                        {% endif %}
                     {#<li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>#}
                     {#<li><a href="../navbar-static-top/">Static top</a></li>#}
                     {#<li><a href="../navbar-fixed-top/">Fixed top</a></li>#}
                     </ul>
-                    {% endif %}
                 </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->
         </nav>
