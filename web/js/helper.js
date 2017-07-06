@@ -14,7 +14,15 @@ function handleError(data) {
 }
 function counterTick(event) {
     var button = $(event.target);
-    button.load(button.data('link'));
+    switch (event.which) {
+        default:
+        case 1:
+            button.load(button.data('link'));
+            break;
+        case 3:
+            button.load(button.data('undolink'));
+            break;
+    }
 }
 $(function () {
     $('body').on('click', '.counter-tick', counterTick);

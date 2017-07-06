@@ -8,6 +8,6 @@
 </div>
 <div class="panel-body">
     {% for entry in data.type.ste %}
-        <button class="btn btn-default btn-xl{% if entry.type.count and is_granted("ROLE_USER") %} counter-tick" data-link="{{ path('counter_tick', {'csd': entry.csd.0.id}) }}{% endif %}" >{% include 'default/button.html.twig' %}</button>
+        <button class="btn btn-default btn-xl{% if entry.type.count and is_granted("ROLE_USER") %} counter-tick" data-link="{{ path('counter_tick', {'csd': entry.csd.0.id}) }}" data-undolink="{{ path('counter_untick', {'csd': entry.csd.0.id}) }}{% endif %}" >{% include 'default/button.html.twig' %}</button>
     {% endfor %}
 </div>

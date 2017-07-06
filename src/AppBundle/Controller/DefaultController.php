@@ -146,13 +146,21 @@ class DefaultController extends Controller
     /**
      * @Route("/tick/{csd}", name="counter_tick", methods={"GET"}, requirements={"csd": "\d+"})
      */
-    public function counterTickAction(Request $request, CategorySTEData $csd)
+    public function counterTickAction(Request $request, CategorySTEData $csd, $oops = false)
     {
         $em = $this->getDoctrine()->getManager();
-        $csd->setData($csd->getData()+1);
+        $csd->setData($csd->getData()+$oops?-1:1);
         $em->persist($csd);
         $em->flush();
         return $this->render('default/button.html.twig', ['entry' => $em->getRepository('AppBundle:SeasonTypeEntry')->findFromCSD($csd)]);
+    }
+
+    /**
+     * @Route("/tick/{csd}/oops", name="counter_untick", methods={"GET"}, requirements={"csd": "\d+"})
+     */
+    public function counterUntickAction(Request $request, CategorySTEData $csd, $oops = true)
+    {
+        return $this->counterTickAction($request, $csd, $oops);
     }
 
     /**
