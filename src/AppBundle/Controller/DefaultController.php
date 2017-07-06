@@ -149,7 +149,7 @@ class DefaultController extends Controller
     public function counterTickAction(Request $request, CategorySTEData $csd, $oops = false)
     {
         $em = $this->getDoctrine()->getManager();
-        $csd->setData($csd->getData()+$oops?-1:1);
+        $csd->setData($csd->getData()+($oops?-1:1));
         $em->persist($csd);
         $em->flush();
         return $this->render('default/button.html.twig', ['entry' => $em->getRepository('AppBundle:SeasonTypeEntry')->findFromCSD($csd)]);
