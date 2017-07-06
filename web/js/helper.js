@@ -26,7 +26,7 @@ function counterTick(event) {
     }
 }
 $(function () {
-    $('body').on('click', '.counter-tick', counterTick);
+    $('body').on('mousedown', '.counter-tick', counterTick);
     modal.on('show.bs.modal', function (event) {
         var link = $(event.relatedTarget);
         $.get(link.data('link'), handleJson).fail(handleError);
