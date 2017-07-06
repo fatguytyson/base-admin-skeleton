@@ -15,18 +15,16 @@ function handleError(data) {
 function counterTick(event) {
     event.preventDefault();
     var button = $(event.target);
-    switch (event.which) {
-        default:
-        case 1:
-            button.load(button.data('link'));
-            break;
-        case 3:
-            button.load(button.data('undolink'));
-            break;
-    }
+    button.load(button.data('link'));
+}
+function counterUntick(event) {
+    event.preventDefault();
+    var button = $(event.target);
+    button.load(button.data('undolink'));
 }
 $(function () {
-    $('body').on('mousedown', '.counter-tick', counterTick);
+    $('body').on('click', '.counter-tick', counterTick)
+        .on('contextmenu', '.counter-tick', counterUntick);
     modal.on('show.bs.modal', function (event) {
         var link = $(event.relatedTarget);
         $.get(link.data('link'), handleJson).fail(handleError);
