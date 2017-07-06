@@ -13,6 +13,7 @@ function handleError(data) {
     modal.find('.modal-content').html('UNAUTHORISED ACTION!');
 }
 function counterTick(event) {
+    event.preventDefault();
     var button = $(event.target);
     switch (event.which) {
         default:
