@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-xs-12">
             {% for category in categories %}
-                <div id="{{ category | lower | replace(' ','_') }}_panel" class="panel panel-default">
+                <div id="{{ category.safeTitle }}_panel" class="panel panel-default">
                 </div>
             {% endfor %}
         </div>
@@ -20,7 +20,7 @@
     <script type="text/javascript">
         $(function () {
             {% for category in categories %}
-            $('#{{ category | lower | replace(' ','_') }}_panel').load('{{ path('category_refresh', {category: category.id}) }}');
+            $('#{{ category.safeTitle }}_panel').load('{{ path('category_refresh', {category: category.id}) }}');
             {% endfor %}
         });
     </script>

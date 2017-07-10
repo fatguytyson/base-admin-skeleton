@@ -71,6 +71,11 @@ class Category
         return $this->title;
     }
 
+    public function getSafeTitle()
+    {
+        return preg_replace('/ +/','_', preg_replace('/[^a-z]+/i', ' ', strtolower($this->title)));
+    }
+
     /**
      * Set type
      *
