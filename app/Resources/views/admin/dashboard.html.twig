@@ -77,8 +77,8 @@
         {% endfor %}
             ],
             xkey: 'y',
-            ykeys: ['{{ panel.categories | join("', '") | raw }}'],
-            labels: ['{{ panel.categories | join("', '") | raw }}']
+            ykeys: ['{{ panel.categories | escape | join("', '") | raw }}'],
+            labels: ['{{ panel.categories | escape | join("', '") | raw }}']
         });
         {% endif %}
         {% endfor %}
