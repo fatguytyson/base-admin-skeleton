@@ -7,16 +7,16 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    package_image_dir: '%kernel.project_dir%/web/images/tours'
     menu_namespace: AppBundle\Controller
     menu_directory: AppBundle/Controller
-    site_name: Site Skeleton
-    site_domain: site.com
-    admin_email: admin@site.com
+    site_name: A Green Oil Life
+    site_image: images/logo-40.png
+    site_domain: agreenoillife.com
+    admin_email: agreenoillife@fatguyconsulting.com
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -48,6 +48,7 @@ twig:
     globals:
         global_menu: "@app.menu_manager"
         site_name: "%site_name%"
+        site_image: "%site_image%"
 # Doctrine Configuration
 doctrine:
     dbal:

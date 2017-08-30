@@ -31,16 +31,17 @@ class ContactType extends AbstractType
                     'placeholder' => 'Email Address'
                 ]
             ])
-            ->add('subject', TextType::class, [
-                'label' => 'Subject',
+            ->add('phone', TextType::class, [
+                'label' => 'Phone Number',
                 'attr' => [
-                    'placeholder' => 'Subject'
+                    'placeholder' => 'Phone Number'
                 ]
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'Message',
                 'attr' => [
-                    'rows' => 3
+                    'rows' => 3,
+                    'placeholder' => 'Message'
                 ]
             ])
         ;
