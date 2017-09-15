@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        {% for item in events %}
+            <div class="media">
+                <div class="d-flex mr-3">
+                    <img style="width: 128px; height: 100%;" class="img-responsive" src="{{ asset(item.image) }}" alt="{{ item.title }}">
+                </div>
+                <div class="media-body">
+                    <h4 class="mt-0">{{ item.title }} - <small>{{ item.date | date('M jS, Y g:iA') }}</small></h4>
+                    <p>{{ item.content | raw }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

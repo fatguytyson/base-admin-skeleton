@@ -1,0 +1,67 @@
+{% if complete is not defined or not complete %}{{ form_start(question) }}{% endif %}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Free Samples!</h4>
+</div>
+<div class="modal-body">
+    {% if complete is defined and complete %}
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            Request has been submitted, we will get back to you soon.
+        </div>
+    {% else %}
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+            {{ form_label(question.issues_one) }}
+            {{ form_widget(question.issues_one) }}
+            {{ form_errors(question.issues_one) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+            {{ form_label(question.issues_two) }}
+            {{ form_widget(question.issues_two) }}
+            {{ form_errors(question.issues_two) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+            {{ form_label(question.issues_three) }}
+            {{ form_widget(question.issues_three) }}
+            {{ form_errors(question.issues_three) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+            {{ form_label(question.address) }}
+            {{ form_widget(question.address) }}
+            {{ form_errors(question.address) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+            {{ form_label(question.phone) }}
+            {{ form_widget(question.phone) }}
+            {{ form_errors(question.phone) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+            {{ form_label(question.email) }}
+            {{ form_widget(question.email) }}
+            {{ form_errors(question.email) }}
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="form-group controls">
+            <input type="checkbox" id="{{ question.message.vars.id }}" name="{{ question.message.vars.full_name }}" value="{{ question.message.vars.value }}">
+            <label for="{{ question.message.vars.id }}"> {{ question.message.vars.label }}</label>{% do question.message.setRendered %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    {% if complete is not defined or not complete %}<button type="submit" class="btn btn-primary">Send</button>{% endif %}
+</div>
+{% if complete is not defined or not complete %}{{ form_end(question) }}{% endif %}

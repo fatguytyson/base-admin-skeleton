@@ -1,0 +1,27 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}Testimonial Creation | {{ parent() }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Testimonial Creation</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-xs-12">
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-success" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_testimonial_index') }}" class="btn btn-warning">Back to the list</a>
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

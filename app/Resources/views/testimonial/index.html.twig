@@ -1,0 +1,54 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}Testimonial List | {{ parent() }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Testimonial List</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-xs-12">
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Content</th>
+                <th>Title</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for testimonial in testimonials %}
+            <tr>
+                <td><a href="{{ path('admin_testimonial_show', { 'id': testimonial.id }) }}">{{ testimonial.id }}</a></td>
+                <td>{{ testimonial.image }}</td>
+                <td>{{ testimonial.content }}</td>
+                <td>{{ testimonial.title }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_testimonial_show', { 'id': testimonial.id }) }}" class="btn btn-success">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_testimonial_edit', { 'id': testimonial.id }) }}" class="btn btn-warning">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_testimonial_new') }}" class="btn btn-info">Create a new testimonial</a>
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

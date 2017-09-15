@@ -31,11 +31,21 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $users = array();
         $temp = $um->createUser();
         $temp
-            ->setUsername('admin')
-            ->setEmail('admin@site.com')
-            ->setPlainPassword('password')
+            ->setUsername('fatguy')
+            ->setEmail('tyson@fatguyconsulting.com')
+            ->setPlainPassword('Gather!2')
             ->setEnabled(true)
             ->setRoles(['ROLE_SUPER_ADMIN']);
+
+        $users[] = $temp;
+
+        $temp = $um->createUser();
+        $temp
+            ->setUsername('nicole')
+            ->setEmail('agreenoillife@gmail.com')
+            ->setPlainPassword('0okM9ijn88')
+            ->setEnabled(true)
+            ->setRoles(['ROLE_ADMIN']);
 
         $users[] = $temp;
 

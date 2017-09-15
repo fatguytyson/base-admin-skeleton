@@ -1,0 +1,47 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Questionnaires - {{ parent() }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+    <h1 class="page-header">Questionnaires list</h1>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-stripped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Health Issues</th>
+                    <th>Beauty Issues</th>
+                    <th>Allergies</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for questionnaire in questionnaires %}
+                    <tr>
+                        <td><a href="{{ path('questionnaire_show', { 'id': questionnaire.id }) }}">{{ questionnaire.id }}</a></td>
+                        <td>{{ questionnaire.issuesOne }}</td>
+                        <td>{{ questionnaire.issuesTwo }}</td>
+                        <td>{{ questionnaire.issuesThree }}</td>
+                        <td>{{ questionnaire.address }}</td>
+                        <td>{{ questionnaire.phone }}</td>
+                        <td>{{ questionnaire.email }}</td>
+                        <td>{% if questionnaire.message %}Yes{% else %}No{% endif %}</td>
+                        <td>
+                            <a href="{{ path('questionnaire_show', { 'id': questionnaire.id }) }}" class="btn btn-success">show</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

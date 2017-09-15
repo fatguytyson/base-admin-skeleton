@@ -1,45 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}{% endblock %}
+{% block title %}{{ title }}{{ parent() }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <h2><a href="#" data-toggle="modal" data-target="#sampleModal">Free Samples Here!</a></h2>
-        </div>
-    </div>
-    <div>&nbsp;</div>
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <h2>Mission Statement</h2>
-            <p>At A Green Oil Life, our mission is to provide support to anyone seeking a more balanced, healthy lifestyle while also providing an excellent business opportunity to gain time and financial freedom. Join me as we journey through clean eating, simple exercise plans, essential oil applications, and most importantly, accountability and mentorship.</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="row">
-                <div class="col-sm-4">
-                    <img src="{{ asset('images/PhotoGrid_1502079214852.jpg') }}" class="img-fluid rounded-circle" />
-                    <div class="caption">
-                        <p>This is my testamonial</p>
-                        <h5 class="pull-right">Person Says</h5>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <img src="{{ asset('images/PhotoGrid_1502079214852.jpg') }}" class="img-fluid rounded-circle" />
-                    <div class="caption">
-                        <p>This is my testamonial</p>
-                        <h5 class="pull-right">Person Says</h5>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <img src="{{ asset('images/PhotoGrid_1502079214852.jpg') }}" class="img-fluid rounded-circle" />
-                    <div class="caption">
-                        <p>This is my testamonial</p>
-                        <h5 class="pull-right">Person Says</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ content | raw }}
+    {% for flag in flags if flag != '' %}
+        {% include flag %}
+    {% endfor %}
 {% endblock %}

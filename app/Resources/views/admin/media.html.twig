@@ -1,0 +1,38 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}Dashboard {{ parent() }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Media Manager</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-image fa-fw"></i> Site Media | /images/{{ folderPath ? folderPath~'/' : '' }}
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="row">
+                    {% for file in files %}
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-xl-1">
+                            <div style="padding-bottom: 150%"></div>
+                            <div class="thumbnail" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
+                                {% if file.type == "file" %}<img src="{{ asset('images/'~folderPath~'/'~file.filename) }}" alt="{{ file.filename }}">{% else %}<i class="fa fa-file fa-5x"></i>{% endif %}
+                                <p>{{ file.filename }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+</div>
+{% endblock %}

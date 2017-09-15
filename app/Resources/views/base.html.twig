@@ -18,6 +18,21 @@
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
               rel='stylesheet' type='text/css'>
         <link href="{{ asset('css/clean-blog.min.css') }}" rel="stylesheet">
+        <style>
+            /*** custom checkboxes ***/
+
+            input[type=checkbox] { display:none; } /* to hide the checkbox itself */
+            input[type=checkbox] + label:before {
+                font-family: FontAwesome;
+                display: inline-block;
+            }
+
+            input[type=checkbox] + label:before { content: "\f096"; } /* unchecked icon */
+            input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
+
+            input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
+            input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow space for check mark */
+        </style>
     {% endblock %}
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}"/>
 </head>
@@ -107,7 +122,8 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; {{ site_name }} {{ 'now' | date('Y') }}</p>
+                    <p class="copyright text-muted">Copyright &copy; {{ site_name }} {{ 'now' | date('Y') }} | {% for item in global_menu.menu('footer') %}{% if not item.role or is_granted(item.role) %}<a href="{{ item.routeOptions ? path(item.route, item.routeOptions) : path(item.route) }}">{{ item.name }}</a>{% endif %}{% endfor %}
+                    </p>
                 </div>
             </div>
         </div>
@@ -115,16 +131,7 @@
     <div id="sampleModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send</button>
-                </div>
+                {% include ':sprites:modal.html.twig' %}
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->{% endblock %}
@@ -133,6 +140,19 @@
     <script src="{{ asset('js/popper.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/clean-blog.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('[name={{ question.vars.name }}]').on('submit', function (event) {
+                event.preventDefault();
+                $.post('{{ path('question_form') }}', $(this).serialize(), function (data) {
+                    $('#sampleModal').find('.modal-content').html(data);
+                }).fail(function () {
+                    console.log('There was an error with the form submission.');
+                    alert('There was an error with the form submission.');
+                });
+            });
+        });
+    </script>
 {% endblock %}
 </body>
 </html>

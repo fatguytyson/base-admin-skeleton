@@ -1,0 +1,26 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}Edit {{ pageName | capitalize }} | {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Edit {{ pageName | capitalize }}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-xs-12">
+            {{ form_start(form) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.bgImage) }}
+            {{ form_row(form.header) }}
+            {{ form_row(form.subheader) }}
+            {{ form_row(form.content) }}
+            {{ form_row(form.flags) }}
+            <button type="submit" class="btn btn-success">Submit</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Annotation\Menu;
+use AppBundle\Entity\Questionnaire;
 use AppBundle\Form\ContactType;
+use AppBundle\Form\QuestionnaireType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,8 +20,6 @@ class DefaultController extends Controller
     {
         $ret = $this->getBaseInfo('homepage');
 
-        $ret['header_image'] = ['path' => 'images/PhotoGrid_1502079214852.jpg', 'header' => 'A Green Oil Life', 'subhead' => 'A green way to improve your life.'];
-
         return $this->render('default/index.html.twig', $ret);
     }
 
@@ -31,9 +31,7 @@ class DefaultController extends Controller
     {
         $ret = $this->getBaseInfo('about_me');
 
-        $ret['header_image'] = ['path' => 'images/about-me-bg.jpg', 'header' => 'About Me', 'subhead' => 'Here is what I am about.'];
-
-        return $this->render('default/about_me.html.twig', $ret);
+        return $this->render('default/index.html.twig', $ret);
     }
 
     /**
@@ -42,39 +40,42 @@ class DefaultController extends Controller
      */
     public function goGreenAction()
     {
-        $ret = $this->getBaseInfo('about_me');
+        $ret = $this->getBaseInfo('go_green');
 
-        $ret['header_image'] = ['path' => 'images/about-me-bg.jpg', 'header' => 'About Me', 'subhead' => 'Here is what I am about.'];
-
-        return $this->render('default/about_me.html.twig', $ret);
+        return $this->render('default/index.html.twig', $ret);
     }
 
     /**
-     * @Menu("Events", route="events", order="4")
+     * @Menu("Essential Oils", route="essential_oils", order="4")
+     * @Route("/essential-oils", name="essential_oils", methods={"GET"})
+     */
+    public function essentialOilsAction()
+    {
+        $ret = $this->getBaseInfo('essential_oils');
+
+        return $this->render('default/index.html.twig', $ret);
+    }
+
+    /**
+     * @Menu("Events", route="events", order="5")
      * @Route("/events", name="events", methods={"GET"})
      */
     public function eventsAction()
     {
-        $ret = $this->getBaseInfo('about_me');
+        $ret = $this->getBaseInfo('events');
 
-        $ret['header_image'] = ['path' => 'images/about-me-bg.jpg', 'header' => 'About Me', 'subhead' => 'Here is what I am about.'];
-
-        return $this->render('default/about_me.html.twig', $ret);
+        return $this->render('default/index.html.twig', $ret);
     }
 
     /**
-     * @Menu("Contact", route="contact", order="5")
+     * @Menu("Contact", route="contact", order="6")
      * @Route("/contact", name="contact", methods={"GET"})
      */
     public function contactAction()
     {
         $ret = $this->getBaseInfo('contact');
 
-        $ret['header_image'] = ['path' => 'images/homepage-bg.jpg', 'header' => 'Contact', 'subhead' => 'Have questions? I have answers (maybe).'];
-        $form = $this->createForm(ContactType::class);
-        $ret['form'] = $form->createView();
-
-        return $this->render('default/contact.html.twig', $ret);
+        return $this->render('default/index.html.twig', $ret);
     }
 
     /**
@@ -94,11 +95,30 @@ class DefaultController extends Controller
 
         $ret = $this->getBaseInfo('contact');
 
-        $ret['header_image'] = ['path' => 'images/homepage-bg.jpg', 'header' => 'Contact', 'subhead' => 'Have questions? I have answers (maybe).'];
         $ret['form'] = $form->createView();
 
-        return $this->render('default/contact.html.twig', $ret);
+        return $this->render('default/index.html.twig', $ret);
+    }
 
+    /**
+     * @Route("/questionnaire", name="question_form", methods={"POST"})
+     */
+    public function questionFormAction(Request $request)
+    {
+        $question = new Questionnaire();
+        $form = $this->createForm(QuestionnaireType::class, $question);
+        $form->handleRequest($request);
+        if ($form->isValid() && $form->isSubmitted()) {
+            $message = new \Swift_Message('A Message from your Question Form', $this->renderView(':emails:question.text.twig', $form->getData()->toArray()), 'text/plain');
+            $message->setSender('no-reply@'.$this->getParameter('site_domain'))->setFrom('no-reply@'.$this->getParameter('site_domain'))->setTo($this->getParameter('admin_email'));
+            $this->get('swiftmailer.mailer')->send($message);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($question);
+            $em->flush();
+            return $this->render(':sprites:modal.html.twig', ['question' => $form->createView(), 'complete' => true]);
+        }
+
+        return $this->render(':sprites:modal.html.twig', ['question' => $form->createView(), 'complete' => false]);
     }
 
     /**
@@ -109,15 +129,46 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $questionnaire = $this->createForm(QuestionnaireType::class);
+
+        $page = $em->getRepository('AppBundle:Page')->findOneBy(['pageName' => $path]);
+
         $ret = [
             'canonical' => $this->generateUrl($path),
+            'author' => 'Nicole Green - A Green Oil Life',
+            'description' => 'Resources to make life better',
+            'keywords' => 'doTERRA, oil, las vegas, green, consultant',
+            'title' => $page->getTitle(),
+            'content' => $page->getContent(),
+            'question' => $questionnaire->createView(),
         ];
+
+        $flags = explode(',', $page->getFlags());
+
+        foreach ($flags as &$flag) {
+            $template = $em->getRepository('AppBundle:SiteSettings')->findOneBy(['title' => $flag]);
+            if ($template) {
+                $flag = $template->getValue();
+            } else {
+                unset($flag);
+            }
+        }
+
+        $ret['flags'] = $flags;
+
+        $ret['header_image'] = ['path' => $page->getBgImage(), 'header' => $page->getHeader(), 'subhead' => $page->getSubheader()];
+
         switch ($path) {
             default:
             case 'homepage':
-                $ret['author'] = 'Nicole Green - A Green Oil Life';
-                $ret['description'] = 'Resources to make life better';
-                $ret['keywords'] = 'doTERRA, oil, las vegas, green, consultant';
+                $ret['testimonials'] = $em->getRepository('AppBundle:Testimonial')->findAll();
+                break;
+            case 'contact':
+                $form = $this->createForm(ContactType::class);
+                $ret['form'] = $form->createView();
+                break;
+            case 'events':
+                $ret['events'] = $em->getRepository('AppBundle:Event')->findBy([],['date' => 'ASC']);
                 break;
         }
         return $ret;

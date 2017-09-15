@@ -1,0 +1,55 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}Event | {{ parent() }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Event</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-xs-12">
+    <table class="table table-stripped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ event.title }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ event.date | date('M jS, Y g:iA') }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ event.content }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ event.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_event_index') }}" class="btn btn-warning">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_event_edit', { 'id': event.id }) }}" class="btn btn-success">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" class="btn btn-danger" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Questionnaire - {{ parent() }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Questionnaire</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-stripped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ questionnaire.id }}</td>
+            </tr>
+            <tr>
+                <th>Health Issues</th>
+                <td>{{ questionnaire.issuesOne }}</td>
+            </tr>
+            <tr>
+                <th>Beauty Issues</th>
+                <td>{{ questionnaire.issuesTwo }}</td>
+            </tr>
+            <tr>
+                <th>Allergies</th>
+                <td>{{ questionnaire.issuesThree }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ questionnaire.address }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ questionnaire.phone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ questionnaire.email }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{% if questionnaire.message %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('questionnaire_index') }}" class="btn btn-warning">Back to the list</a>
+    </div>
+</div>
+{% endblock %}

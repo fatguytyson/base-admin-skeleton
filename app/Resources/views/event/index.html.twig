@@ -1,0 +1,56 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}Events List | {{ parent() }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Events List</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-xs-12">
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Content</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event in events %}
+            <tr>
+                <td><a href="{{ path('admin_event_show', { 'id': event.id }) }}">{{ event.id }}</a></td>
+                <td>{{ event.title }}</td>
+                <td>{{ event.date | date('M jS, Y g:iA') }}</td>
+                <td>{{ event.content }}</td>
+                <td>{{ event.image }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_event_show', { 'id': event.id }) }}" class="btn btn-success">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_event_edit', { 'id': event.id }) }}" class="btn btn-warning">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_event_new') }}" class="btn btn-info">Create a new event</a>
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}Edit Site Settings | {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Edit Site Settings</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-xs-12">
+            {{ form_start(form) }}
+            {% for item in form %}
+                {{ form_row(item) }}
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Submit</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
