@@ -43,6 +43,10 @@ services:
     app.token_generator:
         class: AppBundle\Util\TokenGenerator
         arguments: ["@logger"]
+    app.twig_mail_generator:
+        class: AppBundle\Util\TwigMailGenerator
+        arguments: ["@templating"]
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:

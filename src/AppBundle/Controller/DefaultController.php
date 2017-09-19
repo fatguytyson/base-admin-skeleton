@@ -28,9 +28,12 @@ class DefaultController extends Controller
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
-        $message = new \Swift_Message('A Message from your Contact Form', $this->renderView(':emails:contact.text.twig', $form->getData()), 'text/plain');
-        $message->setSender('no-reply@'.$this->getParameter('site_domain'))->setFrom('no-reply@'.$this->getParameter('site_domain'))->setTo($this->getParameter('admin_email'));
-        $this->get('swiftmailer.mailer')->send($message);
+        $message = $this->get('app.twig_mail_generator')->getMessage('contact', $form->getData());
+        $message
+            ->setSender('no-reply@'.$this->getParameter('site_domain'))
+            ->setFrom('no-reply@'.$this->getParameter('site_domain'))
+            ->setTo($this->getParameter('admin_email'));
+        $this->get('mailer')->send($message);
         $this->addFlash('success', 'Message has been sent!');
         return $this->redirectToRoute('homepage');
     }
