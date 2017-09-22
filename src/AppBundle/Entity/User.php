@@ -29,6 +29,7 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
      * @var string
      *
      * @Assert\NotBlank(message="You must enter a username.")
+     * @Assert\Length(min="3", max="25")
      * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     private $username;
@@ -70,7 +71,12 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     private $password;
 
     /**
+     * Password validation below.
+     *
      * @var string
+     *
+     * @Assert\NotBlank(message="A password is required.")
+     * @Assert\Length(min="16")
      */
     private $plainPassword;
 
@@ -123,11 +129,15 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
      */
     private $roles;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         $this->enabled = false;
         $this->expired = false;
         $this->locked  = false;
+        $this->roles   = array();
     }
 
     /**
@@ -155,9 +165,7 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     }
 
     /**
-     * Get username
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getUsername()
     {
@@ -275,9 +283,7 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     }
 
     /**
-     * Get password
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getPassword()
     {
@@ -461,31 +467,85 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
      */
     public function setRoles($roles)
     {
-        $this->roles = $roles;
+        $this->roles = array();
+        foreach ($roles as $role) {
+            $this->roles[] = strtoupper($role);
+        }
 
         return $this;
     }
 
     /**
-     * Get roles
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getRoles()
     {
         return $this->roles;
     }
 
+    /**
+     * Test if User has Role
+     *
+     * @param string $role
+     *
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        return in_array(strtoupper($role), $this->roles, true);
+    }
+
+    /**
+     * Add Role to User's Roles
+     *
+     * @param string $role
+     *
+     * @return $this
+     */
+    public function addRole($role)
+    {
+        if (!$this->hasRole($role)) {
+            $this->roles[] = strtoupper($role);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove Role from User's Roles
+     *
+     * @param string $role
+     *
+     * @return $this
+     */
+    public function removeRole($role)
+    {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+            unset($this->roles[$key]);
+            $this->roles = array_values($this->roles);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getSalt()
     {
         return null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function eraseCredentials()
     {
         $this->plainPassword = null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isEqualTo(UserInterface $user)
     {
         if (!$user instanceof User) {
@@ -507,10 +567,12 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isAccountNonExpired()
     {
-        return true;
-        /*
+//        return true;
         if ($this->expired) {
             return false;
         }
@@ -521,9 +583,13 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
         }
 
         return true;
-         */
     }
 
+    /**
+     * Checks whether the user has requested a password reset in the past 24 hours.
+     *
+     * @return bool true if the user's password was requested within the day, false otherwise
+     */
     public function isPasswordRequestNonExpired()
     {
         $now = new \DateTime("-1 day");
@@ -534,21 +600,35 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
         return false;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isAccountNonLocked()
     {
         return !$this->locked;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isCredentialsNonExpired()
     {
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isEnabled()
     {
         return $this->enabled;
     }
 
+    /**
+     * Checks whether the user's account is not expired, not locked, and enabled.
+     *
+     * @return bool true if the user's account is valid, false otherwise
+     */
     public function isValid()
     {
         if (!$this->isAccountNonExpired()) {
@@ -557,9 +637,12 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
         if (!$this->isAccountNonLocked()) {
             return false;
         }
-        return true;
+        return $this->enabled;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function serialize()
     {
         return serialize([
@@ -572,6 +655,9 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
         ]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function unserialize($serialized)
     {
         list(

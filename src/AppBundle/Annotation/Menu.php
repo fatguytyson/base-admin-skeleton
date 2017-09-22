@@ -93,7 +93,7 @@ class Menu
      */
     public function getRouteOptions()
     {
-        return $this->routeOptions;
+        return $this->routeOptions ? $this->routeOptions : array();
     }
 
     /**

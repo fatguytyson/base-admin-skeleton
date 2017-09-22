@@ -1,0 +1,14 @@
+<a href="{{ "{{ path('" ~ route_name_prefix ~ "_index') }}" }}" class="btn btn-default">Back to the list</a>
+        {%- if ('edit' in actions) and (not hide_edit) %}
+
+<a href="{{ "{{ path('" ~ route_name_prefix ~ "_edit', { '"~ identifier ~"': " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}" class="btn btn-warning">Edit</a>
+
+        {%- endif %}
+
+        {%- if ('delete' in actions) and (not hide_delete) %}
+<div class="pull-right">
+    {{ '{{ form_start(delete_form) }}' }}
+    <input type="submit" value="Delete" class="btn btn-danger">
+    {{ '{{ form_end(delete_form) }}' }}
+</div>
+        {%- endif %}

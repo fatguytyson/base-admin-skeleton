@@ -28,13 +28,15 @@ class DefaultController extends Controller
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
-        $message = $this->get('app.twig_mail_generator')->getMessage('contact', $form->getData());
-        $message
-            ->setSender('no-reply@'.$this->getParameter('site_domain'))
-            ->setFrom('no-reply@'.$this->getParameter('site_domain'))
-            ->setTo($this->getParameter('admin_email'));
-        $this->get('mailer')->send($message);
-        $this->addFlash('success', 'Message has been sent!');
+        if ($form->isSubmitted() && $form->isValid()) {
+            $message = $this->get('app.mail_generator')->getMessage('contact', $request->request->get('form'));
+            $message
+                ->setSender('no-reply@'.$this->getParameter('site_domain'))
+                ->setFrom('no-reply@'.$this->getParameter('site_domain'))
+                ->setTo($this->getParameter('admin_email'));
+            $this->get('mailer')->send($message);
+            $this->addFlash('success', 'Message has been sent!');
+        }
         return $this->redirectToRoute('homepage');
     }
 

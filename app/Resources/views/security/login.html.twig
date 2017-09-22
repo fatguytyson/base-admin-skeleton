@@ -1,0 +1,32 @@
+{% extends 'unsecured.html.twig' %}
+
+{% block title %}Login{{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="panel-heading">
+        <h3 class="panel-title" align="center">{{ site_name }} - Login</h3>
+    </div>
+    <div class="panel-body">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <form role="form" action="{{ path('login_check') }}" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Username" name="_username" type="text" autofocus value="{{ last_username }}">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Password" name="_password" type="password" value="">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                    </label>
+                    <span class="pull-right"><a href="{{ path('resetting') }}">Forgot Password?</a></span>
+                </div>
+                <!-- Change this to a button or input when using this as a form -->
+                <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

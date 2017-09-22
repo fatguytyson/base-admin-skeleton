@@ -1,0 +1,66 @@
+{% block extends %}
+{{ "{% extends 'admin.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block title %}"~(entity_singularized|capitalize)~"{{ parent() }}{% endblock %}" }}
+
+{{ "{% block content %}" }}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">{{ entity_singularized|capitalize }}</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <table class="table table-striped">
+                    <tbody>
+                    {%- for field, metadata in fields %}
+
+                        <tr>
+                            <th>{{ field|capitalize }}</th>
+
+                        {%- if metadata.type in ['datetime'] %}
+
+                            <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</td>
+
+                        {%- elseif metadata.type in ['date'] %}
+
+                            <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d\') }}{% endif %}' }}</td>
+
+                        {%- elseif metadata.type in ['time'] %}
+
+                            <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'H:i:s\') }}{% endif %}' }}</td>
+
+                        {%- elseif metadata.type in ['array'] %}
+
+                            <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|join(\', \') }}{% endif %}' }}</td>
+
+                        {%- elseif metadata.type in ['boolean'] %}
+
+                            <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}Yes{% else %}No{% endif %}' }}</td>
+
+                        {%- else %}
+
+                            <td>{{ '{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+
+                        {%- endif %}
+
+                        </tr>
+
+                    {%- endfor %}
+
+                    </tbody>
+                </table>
+                <div class="panel-footer">
+                    {% set hide_edit, hide_delete = false, false %}
+                    {{ include('crud/views/others/record_actions.html.twig.twig') -}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{ "{% endblock %}" }}
+{% endblock body %}

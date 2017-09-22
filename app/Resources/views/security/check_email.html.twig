@@ -1,0 +1,14 @@
+{% extends 'unsecured.html.twig' %}
+
+{% block title %}Check Email{{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="panel-heading">
+        <h3 class="panel-title" align="center">{{ site_name }} - Reset Password</h3>
+    </div>
+    <div class="panel-body">
+        <p>An email has been sent. It contains a link you must click to reset your password.
+            Note: You can only request a new password once within 24 hours.</p>
+        <p>If you don't get an email check your spam folder or try again.</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'emails/filter/'~email_filter~'.twig' %}
+
+{% block subject %}Password Reset : {{ site_name }}{% endblock %}
+
+{% block body_html %}
+    <h1>You have been sent a message from {{ full_name }}.</h1>
+    <p>{{ full_name }} can be contacted back at {{ email }} if needed.</p>
+
+    <p>Below is the message that was submitted.</p>
+    <dl>
+        <dt>Subject:</dt>
+        <dd>{{ subject }}</dd>
+        <dt>Message:</dt>
+        <dd>{{ message }}</dd>
+    </dl>
+{% endblock %}
+
+{% block body_text %}
+    Hello {{ user.username }}!
+
+    To reset your password - please visit {{ url() }}
+
+    Regards,
+    {{ site_name }}
+
+    If you did not request this email, please contact us to have the issue resolved.
+{% endblock %}

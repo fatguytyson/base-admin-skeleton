@@ -1,0 +1,36 @@
+{% block extends %}
+{{ "{% extends 'base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block title %}"~(entity_singularized|capitalize)~" edit{{ parent() }}{% endblock %}" }}
+
+{{ "{% block content %}" }}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">{{ entity_singularized|capitalize }} edit</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                {{ '{{ form_start(edit_form) }}' }}
+                <div class="panel-heading">
+                    <input type="submit" value="Edit" class="btn btn-success pull-right" />
+                    Create {{ entity_singularized|capitalize }}
+                </div>
+                <div class="panel-body">
+                    {{ '{{ form_widget(edit_form) }}' }}
+                </div>
+                {{ '{{ form_end(edit_form) }}' }}
+                <div class="panel-footer">
+                    {% set hide_edit, hide_delete = true, false %}
+                    {{ include('crud/views/others/record_actions.html.twig.twig') -}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{ "{% endblock %}" }}
+{% endblock body %}

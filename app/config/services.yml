@@ -36,6 +36,7 @@ services:
         class: AppBundle\Util\MenuDiscovery
         arguments: ["%menu_namespace%", "%menu_directory%", "%kernel.root_dir%", "@annotation_reader"]
     app.user_manager:
+        public: true
         class: AppBundle\Util\UserManager
         arguments: ["@security.encoder_factory", "@app.canonicalizer", "@app.canonicalizer", "@doctrine.orm.entity_manager"]
     app.canonicalizer:
@@ -43,8 +44,9 @@ services:
     app.token_generator:
         class: AppBundle\Util\TokenGenerator
         arguments: ["@logger"]
-    app.twig_mail_generator:
-        class: AppBundle\Util\TwigMailGenerator
+    app.mail_generator:
+        public: true
+        class: AppBundle\Util\MailGenerator
         arguments: ["@templating"]
 
     # add more services, or override services that need manual wiring

@@ -1,0 +1,7 @@
+{% extends 'secured.html.twig' %}
+
+{% block title %} | User{{ parent() }}{% endblock %}
+
+{% block nav %}
+    {% include 'sprites/secured_menu.html.twig' with {menu_group: 'user'} %}
+{% endblock %}

@@ -1,0 +1,118 @@
+{% block extends %}
+{{ "{% extends 'admin.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block title %}"~(entity_pluralized|capitalize)~" list{{ parent() }}{% endblock %}" }}
+
+{{ "{% block content %}" }}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">{{ entity_pluralized|capitalize }} list</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {% if 'new' in actions -%}
+                        <div class="pull-right"><a href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}" class="btn btn-xs btn-success">Create a new {{ entity_singularized }}</a></div>
+                    {%- endif %}
+
+                    {{ entity_pluralized|capitalize }}
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-hover" id="index-table" style="width: 100%;">
+                        <thead>
+                        <tr>
+                            {% for field, metadata in fields %}
+                                {% if loop.first %}
+                                    <th data-priority="1">{{ field|capitalize }}</th>
+                                {% else %}
+                                <th>{{ field|capitalize }}</th>
+                                {% endif %}
+                            {% endfor %}
+                            <th data-priority="2">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{ '{% for ' ~ entity_singularized ~ ' in ' ~ entity_pluralized ~ ' %}' }}
+                        <tr>
+
+                            {%- for field, metadata in fields %}
+                                {%- if loop.first and ('show' in actions) %}
+
+                                    <td><a href="{{ "{{ path('" ~ route_name_prefix ~ "_show', { '"~ identifier ~"': " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}">{{ '{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' }}' }}</a></td>
+
+                                {%- elseif metadata.type in ['datetime'] %}
+
+                                    <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</td>
+
+                                {%- elseif metadata.type in ['date'] %}
+
+                                    <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d\') }}{% endif %}' }}</td>
+
+                                {%- elseif metadata.type in ['time'] %}
+
+                                    <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'H:i:s\') }}{% endif %}' }}</td>
+
+                                {%- elseif metadata.type in ['array'] %}
+
+                                    <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|join(\', \') }}{% endif %}' }}</td>
+
+                                {%- elseif metadata.type in ['boolean'] %}
+
+                                    <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}Yes{% else %}No{% endif %}' }}</td>
+
+                                {%- else %}
+
+                                    <td>{{ '{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+
+                                {%- endif %}
+
+                                {%- if loop.last %}
+
+                                    <td>
+
+                                        {%- for action in record_actions %}
+
+                                            <a href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { '"~ identifier ~"': " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}" class="btn btn-{{ action }}">{{ action|capitalize }}</a>
+
+                                        {%- endfor %}
+
+                                    </td>
+
+                                {%- endif %}
+                            {%- endfor %}
+
+                        </tr>
+                        {{ '{% endfor %}' }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{{ "{% endblock %}" }}
+
+{{ "{% block stylesheets %}" }}
+    {{ "{{ parent() }}" }}
+    <link href="{{ "{{ asset('vendor/datatables/css/dataTables.bootstrap.min.css') }}" }}" rel="stylesheet">
+    <link href="{{ "{{ asset('vendor/datatables-responsive/dataTables.responsive.css') }}" }}" rel="stylesheet">
+{{ "{% endblock %}" }}
+
+{{ "{% block javascripts %}" }}
+    {{ "{{ parent() }}" }}
+    <script src="{{ "{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}" }}"></script>
+    <script src="{{ "{{ asset('vendor/datatables-plugins/dataTables.bootstrap.min.js') }}" }}"></script>
+    <script src="{{ "{{ asset('vendor/datatables-responsive/dataTables.responsive.js') }}" }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#index-table').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+{{ "{% endblock %}" }}
+{% endblock body %}

@@ -23,11 +23,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
-        $um = new UserManager(
-            $this->container->get('security.encoder_factory'),
-            $can = new Canonicalizer(),
-            $can,
-            $this->container->get('doctrine.orm.entity_manager'));
+        $um = $this->container->get('app.user_manager');
         $users = array();
         $temp = $um->createUser();
         $temp

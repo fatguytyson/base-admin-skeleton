@@ -1,0 +1,17 @@
+{% extends 'unsecured.html.twig' %}
+
+{% block title %}Reset Password{{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="panel-heading">
+        <h3 class="panel-title" align="center">{{ site_name }} - Reset Password</h3>
+    </div>
+    <div class="panel-body">
+        {{ form_start(form, { 'action': path('resetting_reset', {'token': token}) }) }}
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="Update Password" />
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
