@@ -12,7 +12,7 @@ parameters:
     site_name: A Green Oil Life
     site_image: images/logo-40.png
     site_domain: agreenoillife.com
-    admin_email: agreenoillife@fatguyconsulting.com
+    admin_email: agreenoillife@gmail.com
 
 framework:
     #esi: ~
