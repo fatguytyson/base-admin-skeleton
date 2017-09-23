@@ -14,7 +14,8 @@
             <ul class="nav navbar-nav">
                 {% for item in global_menu.menu('default') %}
                     {% if not item.role or is_granted(item.role) %}
-                        <li><a href="{{ path(item.route) }}">{{ item.name }}</a></li>{% endif %}
+                        <li><a href="{{ path(item.route, item.routeOptions) }}">{{ item.name }}</a></li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div><!--/.nav-collapse -->
