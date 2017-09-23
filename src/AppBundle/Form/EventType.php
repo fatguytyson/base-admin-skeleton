@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use FM\ElfinderBundle\Form\Type\ElFinderType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +15,10 @@ class EventType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('date')->add('content')->add('image');
+        $builder->add('title')->add('date')->add('content', CKEditorType::class)->add('image', ElFinderType::class, array(
+            'instance' => 'form',
+            'enable' => true
+        ));
     }
     
     /**

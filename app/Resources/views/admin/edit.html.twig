@@ -24,3 +24,10 @@
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/ivoryckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('bundles/ivoryckeditor/adapters/jquery.js') }}"></script>
+    {{ form_javascript(form) }}
+{% endblock %}

@@ -34,7 +34,8 @@
             input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow space for check mark */
         </style>
     {% endblock %}
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link rel="apple-touch-icon image_src" href="{{ asset('apple-touch-icon.png') }}">
 </head>
 <body>
 {% block body %}
@@ -150,6 +151,9 @@
                     console.log('There was an error with the form submission.');
                     alert('There was an error with the form submission.');
                 });
+            });
+            $('.sampleModal').on('click', function () {
+                $('#sampleModal').modal('toggle');
             });
         });
     </script>

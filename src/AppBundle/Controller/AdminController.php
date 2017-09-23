@@ -111,13 +111,13 @@ class AdminController extends Controller
     }
 
     /**
-     * @Menu("Media", route="media", icon="image", order=10, group="admin", role="ROLE_ADMIN")
+     * @Menu("View Media", route="media", icon="image", order=10, group="admin", role="ROLE_ADMIN")
      * @Route("/media/{folderPath}", name="media", requirements={"folderPath" = ".*"})
      */
     public function mediaAction(Request $request, $folderPath = '') //TODO: Add Image/Folder, delete Image/Folder
     {
         $finder = new Finder();
-        $finder->in($this->getParameter('kernel.root_dir').'/../web/images/'.$folderPath);
+        $finder->in($this->getParameter('kernel.root_dir').'/../public_html/images/'.$folderPath);
         return $this->render(':admin:media.html.twig', ['folderPath' => $folderPath, 'files' => $finder]);
     }
 

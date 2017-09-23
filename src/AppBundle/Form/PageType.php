@@ -2,8 +2,9 @@
 
 namespace AppBundle\Form;
 
+use FM\ElfinderBundle\Form\Type\ElFinderType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,14 +18,13 @@ class PageType extends AbstractType
         $builder
 //            ->add('pageName')
             ->add('title')
-            ->add('bgImage')
+            ->add('bgImage', ElFinderType::class, array(
+                'instance' => 'form',
+                'enable' => true
+            ))
             ->add('header')
             ->add('subheader')
-            ->add('content', TextareaType::class, [
-                'attr' => [
-                    'rows' => 10
-                ]
-            ])
+            ->add('content', CKEditorType::class)
             ->add('flags')
         ;
     }
