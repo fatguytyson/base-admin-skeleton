@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b4a0ba4555ff9b10ee469fb7282e1e29",
-    "content-hash": "504505c79dbebdf19b92c71740d720f1",
+    "hash": "cc9d345f3f9e79a86d3f815ee4d28365",
+    "content-hash": "3d14b39cc25f7df02a883b08234723ab",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -833,6 +833,50 @@
                 "orm"
             ],
             "time": "2016-12-18 15:42:34"
+        },
+        {
+            "name": "fgc/menu-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fatguytyson/menu-bundle.git",
+                "reference": "cf982981f604dc98aeaf3cff38df4b8f481a3b95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fatguytyson/menu-bundle/zipball/cf982981f604dc98aeaf3cff38df4b8f481a3b95",
+                "reference": "cf982981f604dc98aeaf3cff38df4b8f481a3b95",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": "~3.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "FGC\\MenuBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Fat Guy Consulting, Inc.",
+                    "homepage": "http://fatguyconsulting.com"
+                },
+                {
+                    "name": "Tyson Green",
+                    "email": "dev@fatguyconsulting.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/fatguytyson/menu-bundle/contributors"
+                }
+            ],
+            "description": "A simple yet robust menu generator for Symfony3",
+            "keywords": [
+                "menu"
+            ],
+            "time": "2017-09-28 23:29:49"
         },
         {
             "name": "fig/link-util",
@@ -2483,7 +2527,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "fgc/menu-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
