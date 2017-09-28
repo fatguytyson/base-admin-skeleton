@@ -1,0 +1,11 @@
+services:
+#    fgc_menu.example:
+#        class: FGC\MenuBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    fgc_menu.twig.function:
+        class: FGC\MenuBundle\Twig\MenuRenderExtension
+        arguments: ["@fgc_menu.twig.render"]
+        tags: ["twig.extension"]
+    fgc_menu.twig.render:
+        class: FGC\MenuBundle\Util\MenuRender
+        arguments: ["@fgc_menu.manager", "@twig"]

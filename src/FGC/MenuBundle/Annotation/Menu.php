@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Annotation;
+namespace FGC\MenuBundle\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
 
@@ -51,6 +51,11 @@ class Menu
      * @var string
      */
     private $role;
+
+    /**
+     * @var string
+     */
+    private $children;
 
     /**
      * Menu constructor.
@@ -109,7 +114,7 @@ class Menu
      */
     public function getOrder()
     {
-        return $this->order ? $this->order : 1;
+        return $this->order ? $this->order : 1000;
     }
 
     /**
@@ -126,5 +131,13 @@ class Menu
     public function getRole()
     {
         return $this->role;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChildren()
+    {
+        return $this->children;
     }
 }

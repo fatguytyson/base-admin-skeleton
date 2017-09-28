@@ -1,0 +1,10 @@
+services:
+#    fgc_menu.example:
+#        class: FGC\MenuBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    fgc_menu.manager:
+        class: FGC\MenuBundle\Util\MenuManager
+        arguments: ["@fgc_menu.discovery"]
+    fgc_menu.discovery:
+        class: FGC\MenuBundle\Util\MenuDiscovery
+        arguments: ["%kernel.root_dir%", "@annotation_reader", "%fgc_menu.discovery.config%"]

@@ -42,7 +42,7 @@ twig:
     form_themes:
         - bootstrap_3_layout.html.twig
     globals:
-        global_menu: "@app.menu_manager"
+        global_menu: "@fgc_menu.manager"
         site_name:   "%site_name%"
         site_domain: "%site_domain%"
         site_email:  "%site_email%"
@@ -75,3 +75,48 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+fgc_menu:
+    menus:
+        admin_user:
+            User Area:
+                route: user_dashboard
+                order: 1
+                icon: list
+                role: ROLE_USER
+            Logout:
+                route: logout
+                order: 2
+                icon: sign-out
+        user_user:
+            Admin Area:
+                route: admin_dashboard
+                order: 1
+                icon: list
+                role: ROLE_ADMIN
+            Logout:
+                route: logout
+                order: 2
+                icon: sign-out
+#        default:
+#            Home:
+#                route: homepage
+#                order: 1
+#            User Area:
+#                route: user_dashboard
+#                order: 2
+#            Admin Area:
+#                route: admin_dashboard
+#                order: 3
+#        user:
+#            Dashboard:
+#                route: user_dashboard
+#                order: 1
+#                icon: dashboard
+#                role: ROLE_USER
+#        admin:
+#            Dashboard:
+#                route: admin_dashboard
+#                order: 1
+#                icon: dashboard
+#                role: ROLE_ADMIN
