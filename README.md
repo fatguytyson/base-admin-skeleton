@@ -8,11 +8,12 @@ Features:
 * Recover Password for the I-D-TEN-T user
 * Complete User Provider
 * Complete User Manager
-* Bootstrap and FontAwesome placed in front end Twig, ready for implimentation
+* Bootstrap and FontAwesome placed in front end Twig, ready for implementation
 * Admin/User area firewalled and ready for use
 * Admin/User area skinned with SB Admin 2
 * Generator Bundle templates overridden to load seamlessly into Admin Area
 * ```@Menu()``` annotation to build single level menus from your controllers
+* Menu Bundle extended to have a config for the non-bundle routes
 
 ## Installation
 
@@ -83,13 +84,62 @@ And lastly, render the menus in your templates.
 
 ```twig
 {# ... #}
-<ul class="nav" id="side-menu">
-    {% for item in global_menu.menu('admin') %}
-        {% if not item.role or is_granted(item.role) %}<li><a href="{{ path(item.route, item.routeOptions) }}"><i class="fa fa-{{ item.icon }} fa-fw"></i> {{ item.name }}</a></li>{% endif %}
-    {% endfor %}
-</ul>
+{{ fgc_menu() }}
 {# ... #}
 ```
+
+This renders:
+
+```html
+<li>
+    <a href="/">
+        Home
+    </a>
+</li>
+<li>
+    <a href="/user/">
+        User Area
+    </a>
+</li>
+<li>
+    <a href="/admin/">
+        Admin Area
+    </a>
+</li>
+    
+```
+
+If you need routes outside of your bundle, you can add them via config.yml, rather than creating a bunch of Annotations.
+
+```yaml
+fgc_menu:
+    namespace: AppBundle\Controller #This is the default and doesn't have to be included
+    directory: AppBundle/Controller #This is the default and doesn't have to be included
+    menus:
+        admin_user:
+            User Area:
+                route: user_dashboard
+                order: 1
+                icon: list
+                role: ROLE_USER
+            Logout:
+                route: logout
+                order: 2
+                icon: sign-out
+        user_user:
+            Admin Area:
+                route: admin_dashboard
+                order: 1
+                icon: list
+                role: ROLE_ADMIN
+            Logout:
+                route: logout
+                order: 2
+                icon: sign-out
+
+```
+
+Need a custom template? Hold on, I'm working on the documentation for that. In fact, I would like to break the entire bundle out to a composer include-able.
 
 ### Admin Area
 
@@ -172,6 +222,10 @@ If this is blank, it is loaded into the default group. But go ahead and load as 
 #### Role
 
 This makes it easy to filter the menu based on the user. Use whatever Roles you have devised, and enjoy.
+
+#### Children
+
+This references the submenu for this item. Yes, you can self reference, but depth is defaulted to 2, so, it is up to you.
 
 ### Email Templating
 
