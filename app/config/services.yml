@@ -29,12 +29,6 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    app.menu_manager:
-        class: AppBundle\Util\MenuManager
-        arguments: ["@app.menu_discovery"]
-    app.menu_discovery:
-        class: AppBundle\Util\MenuDiscovery
-        arguments: ["%menu_namespace%", "%menu_directory%", "%kernel.root_dir%", "@annotation_reader"]
     app.user_manager:
         public: true
         class: AppBundle\Util\UserManager

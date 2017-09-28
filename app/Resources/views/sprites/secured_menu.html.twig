@@ -16,8 +16,7 @@
                 Welcome {{ app.user.username }} <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                {% if is_granted('ROLE_ADMIN') %}<li><a href="{{ path((menu_group == 'admin' ? 'user' : 'admin')~'_dashboard') }}"><i class="fa fa-list fa-fw"></i> {{ menu_group == 'admin' ? 'User' : 'Admin' }} Area</a></li>{% endif %}
-                <li><a href="{{ path('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                {{ fgc_menu(menu_group~'_user') }}
             </ul>
             <!-- /.dropdown-user -->
         </li>
@@ -28,9 +27,7 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
-                {% for item in global_menu.menu(menu_group) %}
-                    {% if not item.role or is_granted(item.role) %}<li><a href="{{ path(item.route, item.routeOptions) }}"><i class="fa fa-{{ item.icon }} fa-fw"></i> {{ item.name }}</a></li>{% endif %}
-                {% endfor %}
+                {{ fgc_menu(menu_group, 'sb_admin_2') }}
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
