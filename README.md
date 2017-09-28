@@ -139,7 +139,7 @@ fgc_menu:
 
 ```
 
-Need a custom template? Hold on, I'm working on the documentation for that. In fact, I would like to break the entire bundle out to a composer include-able.
+Need a custom template? **Hold on**, I'm working on the documentation for that. In fact, I would like to break the entire bundle out to a composer include-able. If anyone is willing to take the time to help, I would appreciate it. GitHub and Composer have been tools I have used, because of necessity, but I am still learning the more interesting stuff.
 
 ### Admin Area
 
