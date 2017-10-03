@@ -1,7 +1,7 @@
 <?php
+namespace FGC\MenuBundle\Util;
 
-namespace AppBundle\Util;
-
+use FGC\MenuBundle\Annotation\Menu;
 
 class MenuManager
 {
@@ -9,6 +9,11 @@ class MenuManager
      * @var MenuDiscovery
      */
     private $menuDiscovery;
+
+    /**
+     * @var array
+     */
+    private $menus;
 
     /**
      * MenuManager constructor.
@@ -26,7 +31,10 @@ class MenuManager
      */
     public function getMenus()
     {
-        return $this->menuDiscovery->getMenus();
+        if (!$this->menus) {
+            $this->menus = $this->menuDiscovery->getMenus();
+        }
+        return $this->menus;
     }
 
     /**
@@ -38,9 +46,9 @@ class MenuManager
      */
     public function getMenu($name)
     {
-        $menu = $this->getMenus();
-        if (isset($menu[$name])) {
-            return $menu[$name];
+        $menus = $this->getMenus();
+        if (isset($menus[$name])) {
+            return $menus[$name];
         }
         throw new \Exception('Menu not found');
     }

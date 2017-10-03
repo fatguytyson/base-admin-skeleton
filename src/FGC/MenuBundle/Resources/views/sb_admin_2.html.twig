@@ -1,0 +1,16 @@
+{% for item in menu %}
+    {% if not item.role or is_granted(item.role) %}
+        <li>
+            <a href="{{ item.route ? path(item.route, item.routeOptions) : '#' }}">
+                {% if item.icon %}<i class="fa fa-{{ item.icon }} fa-fw" ></i>{% endif %}
+                {{ item.name }}
+                {% if item.children and depth %}<span class="fa arrow"></span>{% endif %}
+            </a>
+            {% if item.children and depth %}
+                <ul class="nav">
+                    {{ fgc_menu(item.children, template, depth) }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endif %}
+{% endfor %}

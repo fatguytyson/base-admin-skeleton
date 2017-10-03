@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Annotation\Menu;
+use FGC\MenuBundle\Annotation\Menu;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +14,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class UserAreaController extends Controller
 {
     /**
-     * @Menu("Dashboard", route="user_dashboard", icon="dashboard", order="1", group="user", role="ROLE_ADMIN")
+     * @Menu("Dashboard", route="user_dashboard", icon="dashboard", order="1", group="user", role="ROLE_USER")
      * @Menu("User Area", route="user_dashboard", order="2")
      * @Route("/", name="user_dashboard")
      */

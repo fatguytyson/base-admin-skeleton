@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Util;
+namespace FGC\MenuBundle\Util;
 
-use AppBundle\Annotation\Menu;
+use FGC\MenuBundle\Annotation\Menu;
 use Doctrine\Common\Annotations\Reader;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -19,19 +19,35 @@ class MenuDiscovery
 
     private $menus;
 
+    private $fetched;
+
     /**
      * MenuDiscovery constructor.
-     * @param $namespace
-     * @param $directory
      * @param $rootDir
      * @param Reader $annotationReader
+     * @param array $options
      */
-    public function __construct($namespace, $directory, $rootDir, Reader $annotationReader)
+    public function __construct($rootDir, Reader $annotationReader, $options)
     {
-        $this->namespace = $namespace;
+        $this->fetched = false;
         $this->annotationReader = $annotationReader;
-        $this->directory = $directory;
         $this->rootDir = $rootDir;
+        $this->directory = $options['directory'];
+        $this->namespace = $options['namespace'];
+
+        foreach ($options['menus'] as $group => $items) {
+            foreach ($items as $name => $values) {
+                $values['name']  = $name;
+                $values['group'] = $group;
+                $item = new Menu($values);
+                if (isset($this->menus[$group])) {
+                    $this->menus[$group][] = $item;
+                } else {
+                    $this->menus[$group] = array($item);
+                }
+            }
+        }
+
     }
 
     /**
@@ -41,7 +57,11 @@ class MenuDiscovery
      */
     public function getMenus()
     {
-        if (!$this->menus) {
+        if (!$this->directory || !$this->namespace) {
+            throw new \InvalidArgumentException('Directory/Namespace not set correctly.');
+        }
+
+        if (!$this->fetched) {
             $this->discoverMenus();
         }
 
@@ -68,7 +88,7 @@ class MenuDiscovery
                         if (isset($this->menus[$ann->getGroup()])) {
                             $this->menus[$ann->getGroup()][] = $ann;
                         } else {
-                            $this->menus[$ann->getGroup()] = [$ann];
+                            $this->menus[$ann->getGroup()] = array($ann);
                         }
                     }
                 }
@@ -76,7 +96,9 @@ class MenuDiscovery
         }
 
         foreach ($this->menus as &$group) {
-            usort($group, function ($a, $b) {return $a->getOrder()<$b->getOrder()?-1:1;});
+            usort($group, function ($a, $b) {return $a->getOrder()<=$b->getOrder()?-1:1;});
         }
+
+        $this->fetched = true;
     }
 }
