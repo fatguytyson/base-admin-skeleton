@@ -49,7 +49,7 @@ class AppUserCreateCommand extends ContainerAwareCommand
             return $value?trim($value):'';
         });
         $question->setValidator(function ($value) {
-            if (!preg_match('/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/i', $value)) {
+            if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
                 throw new \RuntimeException(
                     'This is not a valid email'
                 );
