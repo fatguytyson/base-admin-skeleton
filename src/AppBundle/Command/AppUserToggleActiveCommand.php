@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Util\UserManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -23,13 +24,14 @@ class AppUserToggleActiveCommand extends ContainerAwareCommand
     {
         $username = $input->getArgument('username');
 
-        $um = $this->getContainer()->get('app.user_manager');
+        $um = $this->getContainer()->get(UserManager::class);
         $user = $um->findUserByUsernameOrEmail($username);
 
         if ($user) {
             $user->setEnabled(!$user->isEnabled());
             $um->updateUser($user);
             $output->writeln('User Toggled.');
+            $output->writeln($user->getUsername() . ' now ' . ($user->isEnabled() ? 'Active' : 'Inactive'));
             return;
         }
 

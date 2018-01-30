@@ -2,7 +2,7 @@
 
 namespace AppBundle\Util;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
  *
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
-class UserManager
+class UserManager implements UserManagerInterface
 {
     /**
      * @var EncoderFactoryInterface
@@ -31,7 +31,7 @@ class UserManager
     protected $emailCanonicalizer;
 
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     protected $entityManager;
 
@@ -51,9 +51,9 @@ class UserManager
      * @param EncoderFactoryInterface $encoderFactory
      * @param CanonicalizerInterface  $usernameCanonicalizer
      * @param CanonicalizerInterface  $emailCanonicalizer
-     * @param EntityManager           $em
+     * @param EntityManagerInterface  $em
      */
-    public function __construct(EncoderFactoryInterface $encoderFactory, CanonicalizerInterface $usernameCanonicalizer, CanonicalizerInterface $emailCanonicalizer, EntityManager $em)
+    public function __construct(EncoderFactoryInterface $encoderFactory, CanonicalizerInterface $usernameCanonicalizer, CanonicalizerInterface $emailCanonicalizer, EntityManagerInterface $em)
     {
         $this->encoderFactory = $encoderFactory;
         $this->usernameCanonicalizer = $usernameCanonicalizer;
@@ -65,9 +65,7 @@ class UserManager
     }
 
     /**
-     * Returns an empty user instance
-     *
-     * @return User
+     * {@inheritDoc}
      */
     public function createUser()
     {
@@ -77,11 +75,7 @@ class UserManager
     }
 
     /**
-     * Finds a user by email
-     *
-     * @param string $email
-     *
-     * @return User
+     * {@inheritDoc}
      */
     public function findUserByEmail($email)
     {
@@ -89,11 +83,7 @@ class UserManager
     }
 
     /**
-     * Finds a user by username
-     *
-     * @param string $username
-     *
-     * @return User
+     * {@inheritDoc}
      */
     public function findUserByUsername($username)
     {
@@ -101,11 +91,7 @@ class UserManager
     }
 
     /**
-     * Finds a user either by email, or username
-     *
-     * @param string $usernameOrEmail
-     *
-     * @return User
+     * {@inheritDoc}
      */
     public function findUserByUsernameOrEmail($usernameOrEmail)
     {
@@ -117,11 +103,7 @@ class UserManager
     }
 
     /**
-     * Finds a user either by confirmation token
-     *
-     * @param string $token
-     *
-     * @return User
+     * {@inheritDoc}
      */
     public function findUserByConfirmationToken($token)
     {
@@ -220,10 +202,7 @@ class UserManager
     }
 
     /**
-     * Updates a user.
-     *
-     * @param User      $user
-     * @param Boolean   $andFlush Whether to flush the changes (default true)
+     * {@inheritDoc}
      */
     public function updateUser(User $user, $andFlush = true)
     {

@@ -3,7 +3,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\ResetType;
 use AppBundle\Util\TokenGeneratorInterface;
-use AppBundle\Util\UserManager;
+use AppBundle\Util\UserManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -63,7 +63,7 @@ class SecurityController extends Controller
     {
         $username = $request->request->get('_username');
 
-        $user = $this->get('app.user_manager')->findUserByUsernameOrEmail($username);
+        $user = $this->get('AppBundle\Util\UserManagerInterface::class')->findUserByUsernameOrEmail($username);
 
         if ($user !== null && $user->isPasswordRequestNonExpired()) {
             if (null === $user->getConfirmationToken()) {
@@ -77,7 +77,7 @@ class SecurityController extends Controller
                 ->setTo($user->getEmailCanon());
             $this->get('mailer')->send($message);
             $user->setPasswordRequestedAt(new \DateTime());
-            $this->get('app.user_manager')->updateUser($user);
+            $this->get('AppBundle\Util\UserManagerInterface::class')->updateUser($user);
         }
 
         return $this->redirectToRoute('resetting_check_email', array('username' => $username));
@@ -103,8 +103,8 @@ class SecurityController extends Controller
      */
     public function resetAction(Request $request, $token)
     {
-        /** @var $userManager UserManager */
-        $userManager = $this->get('app.user_manager');
+        /** @var $userManager UserManagerInterface */
+        $userManager = $this->get('AppBundle\Util\UserManagerInterface::class');
 
         $user = $userManager->findUserByConfirmationToken($token);
 

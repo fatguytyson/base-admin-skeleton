@@ -20,7 +20,7 @@ services:
         resource: '../../src/AppBundle/*'
         # you can exclude directories or files
         # but if a service is unused, it's removed anyway
-        exclude: '../../src/AppBundle/{Entity,Repository,Util}'
+        exclude: '../../src/AppBundle/{Entity,Repository}'
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
@@ -28,20 +28,23 @@ services:
         resource: '../../src/AppBundle/Controller'
         public: true
         tags: ['controller.service_arguments']
+    AppBundle\Util\:
+        public: true
+        resource: '../../src/AppBundle/Util'
 
-    app.user_manager:
-        public: true
-        class: AppBundle\Util\UserManager
-        arguments: ["@security.encoder_factory", "@app.canonicalizer", "@app.canonicalizer", "@doctrine.orm.entity_manager"]
-    app.canonicalizer:
-        class: AppBundle\Util\Canonicalizer
-    app.token_generator:
-        class: AppBundle\Util\TokenGenerator
-        arguments: ["@logger"]
-    app.mail_generator:
-        public: true
-        class: AppBundle\Util\MailGenerator
-        arguments: ["@templating"]
+#    app.user_manager:
+#        public: true
+#        class: AppBundle\Util\UserManager
+#        arguments: ["@security.encoder_factory", "@app.canonicalizer", "@app.canonicalizer", "@doctrine.orm.entity_manager"]
+#    app.canonicalizer:
+#        class: AppBundle\Util\Canonicalizer
+#    app.token_generator:
+#        class: AppBundle\Util\TokenGenerator
+#        arguments: ["@logger"]
+#    app.mail_generator:
+#        public: true
+#        class: AppBundle\Util\MailGenerator
+#        arguments: ["@templating"]
 
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:

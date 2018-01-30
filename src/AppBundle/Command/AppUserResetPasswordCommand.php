@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Util\UserManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,7 +26,7 @@ class AppUserResetPasswordCommand extends ContainerAwareCommand
         $username = $input->getArgument('username');
 
         $qhelper = $this->getHelper('question');
-        $um = $this->getContainer()->get('app.user_manager');
+        $um = $this->getContainer()->get(UserManager::class);
         $user = $um->findUserByUsernameOrEmail($username);
 
         if ($user) {

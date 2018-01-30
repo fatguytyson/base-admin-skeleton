@@ -10,34 +10,4 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function loadUserByUsername($username)
-    {
-        return $this->createQueryBuilder('u')
-            ->where('u.username = :username OR u.email = :email')
-            ->setParameter('username', $username)
-            ->setParameter('email', $username)
-            ->getQuery()
-            ->getOneOrNullResult();
-    }
-
-    public function findAllQuery($roles = array())
-    {
-        $qb = $this->createQueryBuilder('u');
-        /** @var Role $role */
-        foreach ($roles as $key => $role) {
-            $qb
-                ->orWhere('u.roles LIKE ?' . $key)
-                ->setParameter($key, '%'.$role->getRole().'%');
-        }
-        return $qb
-            ->getQuery();
-    }
-
-    public function findAllValid()
-    {
-        return $this->createQueryBuilder('u')
-            ->where('u.locked = false')
-            ->getQuery()
-            ->getResult();
-    }
 }
