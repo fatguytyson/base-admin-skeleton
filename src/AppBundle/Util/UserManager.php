@@ -117,6 +117,18 @@ class UserManager
     }
 
     /**
+     * Finds a user by facebook oAuth Token
+     *
+     * @param string $oauth
+     *
+     * @return User
+     */
+    public function findUserByOauth($oauth)
+    {
+        return $this->findUserBy(array('facebook_key' => $oauth));
+    }
+
+    /**
      * Finds a user either by confirmation token
      *
      * @param string $token

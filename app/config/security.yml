@@ -27,6 +27,18 @@ security:
             logout:
                 path: logout
             anonymous: true
+            oauth:
+                resource_owners:
+                    facebook:           "/user/login_facebook"
+#                    google:             "/login/check-google"
+#                    my_custom_provider: "/login/check-custom"
+#                    my_github:          "/login/check-github"
+                login_path:        /user/login
+                use_forward:       true
+                failure_path:      /user/login
+
+                oauth_user_provider:
+                    service: app.user_provider
             #anonymous: ~
             # activate different ways to authenticate
 
@@ -37,6 +49,7 @@ security:
             #form_login: ~
     access_control:
 #        - { path: ^/, roles: IS AUTHENTICATED_ANONYMOUSLY, requires_channel: https } # for https
+        - { path: ^/user/connect, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user, roles: [ROLE_USER] }

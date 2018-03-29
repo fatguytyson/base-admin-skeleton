@@ -4,12 +4,14 @@ namespace AppBundle\Security;
 
 use AppBundle\Entity\User;
 use AppBundle\Util\UserManager;
+use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
+use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 
-class UserProvider implements UserProviderInterface
+class UserProvider implements UserProviderInterface, OAuthAwareUserProviderInterface
 {
     /**
      * @var UserManager
@@ -35,6 +37,20 @@ class UserProvider implements UserProviderInterface
 
         if (!$user) {
             throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
+        }
+
+        return $user;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function loadUserByOAuthUserResponse(UserResponseInterface $response)
+    {
+        $user = $this->um->findUserByOauth($response->getAccessToken());
+
+        if (!$user) {
+            throw new UsernameNotFoundException('Facebook user does not exist.');
         }
 
         return $user;

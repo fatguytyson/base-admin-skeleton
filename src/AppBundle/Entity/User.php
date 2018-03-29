@@ -81,6 +81,13 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     private $plainPassword;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_key", type="string", length=64, nullable=true)
+     */
+    private $facebookKey;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="lastLogin", type="datetime", nullable=true)
@@ -668,5 +675,29 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
             $this->locked,
             $this->expired
             ) = unserialize($serialized);
+    }
+
+    /**
+     * Set facebookKey
+     *
+     * @param string $facebookKey
+     *
+     * @return User
+     */
+    public function setFacebookKey($facebookKey)
+    {
+        $this->facebookKey = $facebookKey;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookKey
+     *
+     * @return string
+     */
+    public function getFacebookKey()
+    {
+        return $this->facebookKey;
     }
 }

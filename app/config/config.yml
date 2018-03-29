@@ -120,3 +120,14 @@ fgc_menu:
 #                order: 1
 #                icon: dashboard
 #                role: ROLE_ADMIN
+hwi_oauth:
+    firewall_names: [main]
+    resource_owners:
+        facebook:
+            type:           facebook
+            client_id:      243874406062563
+            client_secret:  9ec0ff35e01a81ff16ea9415aba4fac5
+            scope:          "email"
+            options:
+                csrf:    true
+                display: popup

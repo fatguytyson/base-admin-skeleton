@@ -33,6 +33,10 @@ services:
         public: true
         class: AppBundle\Util\UserManager
         arguments: ["@security.encoder_factory", "@app.canonicalizer", "@app.canonicalizer", "@doctrine.orm.entity_manager"]
+    app.user_provider:
+        public: true
+        class: AppBundle\Security\UserProvider
+        arguments: ["@app.user_manager"]
     app.canonicalizer:
         class: AppBundle\Util\Canonicalizer
     app.token_generator:
