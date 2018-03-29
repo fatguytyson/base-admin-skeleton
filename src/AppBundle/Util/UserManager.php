@@ -111,7 +111,7 @@ class UserManager implements UserManagerInterface
      */
     public function findUserByOauth($oauth)
     {
-        return $this->findUserBy(array('facebook_key' => $oauth));
+        return $this->findUserBy(array('facebookKey' => $oauth));
     }
 
     /**
