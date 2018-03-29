@@ -47,7 +47,7 @@ class UserProvider implements UserProviderInterface, OAuthAwareUserProviderInter
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
-        $user = $this->um->findUserByOauth($response->getAccessToken());
+        $user = $this->um->findUserByEmail($response->getEmail());
 
         if (!$user) {
         	$user = $this->um->createUser();
