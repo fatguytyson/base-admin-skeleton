@@ -57,6 +57,7 @@ class UserProvider implements UserProviderInterface, OAuthAwareUserProviderInter
 		        ->setUsername($response->getUsername())
 		        ->setFacebookKey($response->getAccessToken())
 		        ->setPlainPassword($response->getRealName())
+		        ->addRole('ROLE_USER')
 		        ;
         	$this->um->updateUser($user);
 //            throw new UsernameNotFoundException('Facebook user does not exist.');
