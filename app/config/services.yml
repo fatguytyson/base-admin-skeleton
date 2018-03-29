@@ -32,23 +32,23 @@ services:
         public: true
         resource: '../../src/AppBundle/Util'
 
-    app.user_manager:
-        public: true
-        class: AppBundle\Util\UserManager
-        arguments: ["@security.encoder_factory", "@app.canonicalizer", "@app.canonicalizer", "@doctrine.orm.entity_manager"]
-    app.user_provider:
-        public: true
-        class: AppBundle\Security\UserProvider
-        arguments: ["@app.user_manager"]
-    app.canonicalizer:
-        class: AppBundle\Util\Canonicalizer
-    app.token_generator:
-        class: AppBundle\Util\TokenGenerator
-        arguments: ["@logger"]
-    app.mail_generator:
-        public: true
-        class: AppBundle\Util\MailGenerator
-        arguments: ["@templating"]
+#    app.user_manager:
+#        public: true
+#        class: AppBundle\Util\UserManagerInterface
+#        arguments: ["@security.encoder_factory", "@app.canonicalizer", "@app.canonicalizer", "@doctrine.orm.entity_manager"]
+#    app.user_provider:
+#        public: true
+#        class: AppBundle\Security\UserProvider
+#        arguments: ["@app.user_manager"]
+#    app.canonicalizer:
+#        class: AppBundle\Util\CanonicalizerInterface
+#    app.token_generator:
+#        class: AppBundle\Util\TokenGeneratorInterface
+#        arguments: ["@logger"]
+#    app.mail_generator:
+#        public: true
+#        class: AppBundle\Util\MailGenerator
+#        arguments: ["@templating"]
 
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:

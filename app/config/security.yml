@@ -38,7 +38,7 @@ security:
                 failure_path:      /user/login
 
                 oauth_user_provider:
-                    service: app.user_provider
+                    service: AppBundle\Security\UserProvider
             #anonymous: ~
             # activate different ways to authenticate
 
