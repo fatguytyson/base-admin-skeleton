@@ -83,7 +83,7 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="facebook_key", type="string", length=64, nullable=true)
+     * @ORM\Column(name="facebook_key", type="string", length=128, nullable=true)
      */
     private $facebookKey;
 
