@@ -194,6 +194,7 @@ class UserManager implements UserManagerInterface
      */
     public function findUserBy(array $criteria)
     {
+    	dump($criteria);
         return $this->repository->findOneBy($criteria);
     }
 

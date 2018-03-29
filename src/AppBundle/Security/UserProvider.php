@@ -49,7 +49,6 @@ class UserProvider implements UserProviderInterface, OAuthAwareUserProviderInter
     {
         $user = $this->um->findUserByOauth($response->getAccessToken());
 
-        dump($user);
         if (!$user) {
         	$user = $this->um->createUser();
         	$user
