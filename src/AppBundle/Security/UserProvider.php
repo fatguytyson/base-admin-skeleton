@@ -3,7 +3,7 @@
 namespace AppBundle\Security;
 
 use AppBundle\Entity\User;
-use AppBundle\Util\UserManager;
+use AppBundle\Util\UserManagerInterface;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -14,16 +14,16 @@ use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 class UserProvider implements UserProviderInterface, OAuthAwareUserProviderInterface
 {
     /**
-     * @var UserManager
+     * @var UserManagerInterface
      */
     protected $um;
 
     /**
      * Constructor.
      *
-     * @param UserManager $um
+     * @param UserManagerInterface $um
      */
-    public function __construct(UserManager $um)
+    public function __construct(UserManagerInterface $um)
     {
         $this->um = $um;
     }

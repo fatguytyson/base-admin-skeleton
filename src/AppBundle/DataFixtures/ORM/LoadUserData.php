@@ -2,10 +2,9 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Util\Canonicalizer;
+use AppBundle\Util\UserManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Util\UserManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -23,7 +22,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
-        $um = $this->container->get('app.user_manager');
+        $um = $this->container->get(UserManager::class);
         $users = array();
         $temp = $um->createUser();
         $temp

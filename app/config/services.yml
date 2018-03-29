@@ -28,6 +28,9 @@ services:
         resource: '../../src/AppBundle/Controller'
         public: true
         tags: ['controller.service_arguments']
+    AppBundle\Util\:
+        public: true
+        resource: '../../src/AppBundle/Util'
 
     app.user_manager:
         public: true

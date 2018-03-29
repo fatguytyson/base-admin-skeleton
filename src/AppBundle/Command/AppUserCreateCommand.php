@@ -3,6 +3,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
+use AppBundle\Util\UserManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -81,7 +82,7 @@ class AppUserCreateCommand extends ContainerAwareCommand
             $role = 'ROLE_SUPER_ADMIN';
         }
 
-        $um = $this->getContainer()->get('app.user_manager');
+        $um = $this->getContainer()->get(UserManager::class);
         $user = $um->createUser();
         $user->setUsername($username)->setEmail($email)->setPlainPassword($password)->setEnabled(true)->setRoles([$role]);
         $um->updateUser($user);
