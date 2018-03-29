@@ -62,7 +62,7 @@ class UserProvider implements UserProviderInterface, OAuthAwareUserProviderInter
 		        ->setEmail($response->getEmail())
 		        ->setUsername($response->getRealName())
 		        ->setFacebookKey($response->getUsername())
-		        ->setPlainPassword($response->getRealName())
+		        ->setPlainPassword($response->getRealName().rand(0,1000))
 		        ->addRole('ROLE_USER')
 		        ;
         	$this->um->updateUser($user);
