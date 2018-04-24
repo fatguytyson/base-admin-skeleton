@@ -19,7 +19,8 @@ class MenuSubscriber implements EventSubscriberInterface
 	protected $user;
 
 	public function __construct(TokenStorageInterface $token) {
-		$this->user = $token->getToken()->getUser();
+		$token = $token->getToken();
+		$this->user = $token ? $token->getUser() : null;
 	}
 
 	public static function getSubscribedEvents() {

@@ -1,0 +1,68 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Contacts list{{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">Contacts list</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    
+                    Contacts
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-hover" id="index-table" style="width: 100%;">
+                        <thead>
+                        <tr>
+                                                                                                <th data-priority="1">Id</th>
+                                                                                                                            <th>Name</th>
+                                                                                                                            <th>Email</th>
+                                                                                                                            <th>Truck</th>
+                                                                                        <th data-priority="2">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for contact in contacts %}
+                        <tr>
+                                    <td><a href="{{ path('admin_contact_show', { 'id': contact.id }) }}">{{ contact.id }}</a></td>
+                                    <td>{{ contact.name }}</td>
+                                    <td>{{ contact.email }}</td>
+                                    <td>{{ contact.truck }}</td>
+                                    <td>
+                                            <a href="{{ path('admin_contact_show', { 'id': contact.id }) }}" class="btn btn-show">Show</a>
+                                    </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('vendor/datatables/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/datatables-responsive/dataTables.responsive.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables-plugins/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables-responsive/dataTables.responsive.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#index-table').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+{% endblock %}

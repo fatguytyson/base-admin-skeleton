@@ -3,24 +3,21 @@
 {% block subject %}Contact form : {{ site_name }}{% endblock %}
 
 {% block body_html %}
-    <h1>You have been sent a message from {{ full_name }}.</h1>
-    <p>{{ full_name }} can be contacted back at {{ email }} if needed.</p>
+    <h1>You have been sent a message from {{ name }}.</h1>
+    <p>{{ name }} can be contacted back at {{ email }} if needed.</p>
 
     <p>Below is the message that was submitted.</p>
     <dl>
-        <dt>Subject:</dt>
-        <dd>{{ subject }}</dd>
-        <dt>Message:</dt>
-        <dd>{{ message }}</dd>
+        <dt>Truck:</dt>
+        <dd>{{ truck }}</dd>
     </dl>
 {% endblock %}
 
 {% block body_text %}
-    You have been sent a message from {{ full_name }}.
-    {{ full_name }} can be contacted back at {{ email }} if needed.
+    You have been sent a message from {{ name }}.
+    {{ name }} can be contacted back at {{ email }} if needed.
 
     Below is the message that was submitted.
 
-    Subject: {{ subject }}
-    Message: {{ message }}
+    Truck: {{ truck }}
 {% endblock %}

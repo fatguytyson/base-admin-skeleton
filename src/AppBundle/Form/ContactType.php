@@ -20,30 +20,42 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('full_name', TextType::class, [
+            ->add('name', TextType::class, [
                 'label' => 'Full Name',
                 'attr' => [
-                    'placeholder' => 'Full Name'
+                    'placeholder' => 'Your Name... *'
                 ]
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'attr' => [
-                    'placeholder' => 'Email Address'
+                    'placeholder' => 'E-mail address... *'
                 ]
             ])
-            ->add('subject', TextType::class, [
+            ->add('truck', TextType::class, [
                 'label' => 'Subject',
                 'attr' => [
-                    'placeholder' => 'Subject'
+                    'placeholder' => 'Make & Model of Truck'
                 ]
             ])
-            ->add('message', TextareaType::class, [
-                'label' => 'Message',
-                'attr' => [
-                    'rows' => 3
-                ]
-            ])
+//            ->add('message', TextareaType::class, [
+//                'label' => 'Message',
+//                'attr' => [
+//                    'rows' => 3
+//                ]
+//            ])
         ;
+    }
+
+    public function configureOptions( OptionsResolver $resolver )
+    {
+	    $resolver->setDefaults(array(
+	    	'data_class' => 'AppBundle\Entity\Contact'
+	    ));
+    }
+
+    public function getBlockPrefix()
+    {
+	    return 'contact';
     }
 }

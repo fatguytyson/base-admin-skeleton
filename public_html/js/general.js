@@ -54,11 +54,11 @@ $(function($) {
      * Affixed Navbar
      *-----------------------------------------------------------------*/
 
-    // $navigation.affix({
-    //     offset: {
-    //         top: navigation_height
-    //     }
-    // });
+    $navigation.affix({
+        offset: {
+            top: navigation_height
+        }
+    });
 
     /*-----------------------------------------------------------------
      * Scroll To Top
@@ -188,7 +188,7 @@ $(function($) {
                 $.ajax({
 
                     type   : 'post',
-                    url    : 'sendmail.php',
+                    url    : 'contact',
                     data   : $(form).serialize(),
 
                     success: function() {

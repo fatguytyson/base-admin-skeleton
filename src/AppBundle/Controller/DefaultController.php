@@ -2,11 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
+use AppBundle\Entity\Contact;
 use FGC\MenuBundle\Annotation\Menu;
 use AppBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Util\MailGenerator;
 
 class DefaultController extends Controller
 {
@@ -17,6 +20,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $ret = $this->getBaseInfo('homepage');
+        $ret['form'] = $this->createForm(ContactType::class)->createView();
 
         return $this->render('default/index.html.twig', $ret);
     }
@@ -26,14 +30,17 @@ class DefaultController extends Controller
      */
     public function contactAction(Request $request)
     {
-        $form = $this->createForm(ContactType::class);
+    	$contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $message = $this->get('app.mail_generator')->getMessage('contact', $request->request->get('form'));
+        	$this->getDoctrine()->getManager()->persist($contact);
+        	$this->getDoctrine()->getManager()->flush();
+            $message = $this->get(MailGenerator::class)->getMessage('contact', $request->request->get('contact'));
             $message
                 ->setSender('no-reply@'.$this->getParameter('site_domain'))
                 ->setFrom('no-reply@'.$this->getParameter('site_domain'))
-                ->setTo($this->getParameter('admin_email'));
+                ->setTo($this->getParameter('site_email'));
             $this->get('mailer')->send($message);
             $this->addFlash('success', 'Message has been sent!');
         }

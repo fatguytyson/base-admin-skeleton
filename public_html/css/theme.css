@@ -63,8 +63,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700);
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700,500,600);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
-@import '../css/bootstrap.min.css';
-@import '../css/bootstrap-theme.min.css';
+@import '../css/bootstrap-ancient.min.css';
+@import '../css/bootstrap-theme-ancient.min.css';
 @import '../css/font-awesome.min.css';
 @import '../css/owl.carousel.css';
 @import '../css/owl.theme.css';
