@@ -5,6 +5,7 @@ imports:
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+# INFO: Hawlit password: qtnc5PgNUqT1
 parameters:
     locale: en
     menu_namespace: AppBundle\Controller
@@ -44,6 +45,7 @@ twig:
     globals:
         global_menu: "@fgc_menu.manager"
         site_name:   "%site_name%"
+        site_tag:    "Make Money With Your Truck!"
         site_domain: "%site_domain%"
         site_email:  "%site_email%"
 # Doctrine Configuration
