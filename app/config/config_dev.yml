@@ -18,6 +18,15 @@ monolog:
             path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
             channels: ['!event']
+        att_setting:
+            type: fingers_crossed
+            action_level: warning
+            handler: setting
+        setting:
+            type: stream
+            path: '%kernel.logs_dir%/setting.%kernel.environment%.log'
+            level: warning
+            channels: app
         console:
             type:   console
             process_psr_3_messages: false
@@ -33,9 +42,10 @@ monolog:
         #firephp:
         #    type: firephp
         #    level: info
-        #chromephp:
-        #    type: chromephp
-        #    level: info
+#        chromephp:
+#            type: chromephp
+#            level: info
+#            channels: setting
 
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']

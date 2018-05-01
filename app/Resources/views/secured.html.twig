@@ -6,6 +6,7 @@
 
 {% block stylesheets %}
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/bootstrap-toggle/css/bootstrap-toggle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
     <link href="{{ asset('dist/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -15,6 +16,7 @@
 {% block javascripts %}
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-toggle/js/bootstrap-toggle.min.js') }}"></script>
     <script src="{{ asset('vendor/metisMenu/metisMenu.min.js') }}"></script>
     <script src="{{ asset('dist/js/sb-admin-2.min.js') }}"></script>
     <script>
@@ -59,6 +61,16 @@
         {% endblock %}
 
         <div id="page-wrapper">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
             {% block content %}
 
             {% endblock %}

@@ -31,6 +31,11 @@ services:
     AppBundle\Util\:
         public: true
         resource: '../../src/AppBundle/Util'
+#    AppBundle\Util\SettingLoggerCallable:
+#        public: true
+#        arguments: ['@monolog.logger.setting']
+#        tags:
+#            - { name: monolog.logger.setting, channel: setting }
 
 #    app.user_manager:
 #        public: true

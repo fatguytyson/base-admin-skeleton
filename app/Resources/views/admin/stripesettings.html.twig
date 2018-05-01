@@ -1,0 +1,35 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}Stripe Settings - {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">Stripe Settings</h1>
+        </div>
+        {{ form_start(form) }}
+        {% for setting in form.settings %}
+            {% if setting.vars.value.name == 'stripe.test' %}
+                <input type="hidden" id="{{ setting.name.vars.id }}" name="{{ setting.name.vars.full_name }}" value="{{ setting.name.vars.value }}">
+                <div class="form-group col-xs-12">
+                    <label class="control-label required" for="{{ setting.value.vars.id }}" data-toggle="tooltip" title="{{ setting.vars.value.note }}">
+                        <input type="checkbox" id="{{ setting.value.vars.id }}" name="{{ setting.value.vars.full_name }}" class="checkbox" data-toggle="toggle" value="1"{{ setting.value.vars.value ? ' checked' : '' }}>
+                        {{ setting.vars.value.label }}
+                    </label>
+                </div>
+                {% do setting.setRendered %}
+            {% else %}
+                <input type="hidden" id="{{ setting.name.vars.id }}" name="{{ setting.name.vars.full_name }}" value="{{ setting.name.vars.value }}">
+                <div class="form-group col-xs-12 col-sm-6 col-lg-3">
+                    <label class="control-label required" for="{{ setting.value.vars.id }}">{{ setting.vars.value.label }}</label>
+                    <input type="text" id="{{ setting.value.vars.id }}" name="{{ setting.value.vars.full_name }}" required="required" data-toggle="tooltip" title="{{ setting.vars.value.note }}" class="form-control" value="{{ setting.value.vars.value }}">
+                </div>
+                {% do setting.setRendered %}
+            {% endif %}
+        {% endfor %}
+        <div class="col-xs-12 form-group">
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

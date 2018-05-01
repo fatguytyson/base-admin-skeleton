@@ -12,7 +12,19 @@ monolog:
         main:
             type: fingers_crossed
             action_level: error
-            handler: nested
+            handler: grouped
+        att_setting:
+            type: fingers_crossed
+            action_level: warning
+            handler: setting
+        setting:
+            type: stream
+            path: '%kernel.logs_dir%/setting.%kernel.environment%.log'
+            level: warning
+            channels: app
+        grouped:
+            type: group
+            members: [nested, email]
         nested:
             type: stream
             path: '%kernel.logs_dir%/%kernel.environment%.log'
@@ -20,3 +32,14 @@ monolog:
         console:
             type: console
             process_psr_3_messages: false
+        email:
+            type: deduplication
+            handler: swift
+        swift:
+            type: swift_mailer
+            from_email:   "error@%site_domain%"
+            to_email:     'hawlit@fatguyconsulting.com'
+            subject:      "An error occurred on %site_name%"
+            level:        debug
+            formatter:    monolog.formatter.html
+            content_type: text/html

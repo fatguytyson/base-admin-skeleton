@@ -1,0 +1,366 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block body %}
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- /Preloader -->
+    <!-- Page Header -->
+    <header id="home" data-stellar-background-ratio="0.4">
+
+        <!-- Navigation -->
+        <nav id="navigation" class="navbar">
+            <div class="container">
+
+                <!-- Navigation Header -->
+                <div class="navbar-header">
+
+                    <!-- Toggle Button -->
+                    <button type="button"
+                            class="navbar-toggle collapsed"
+                            data-toggle="collapse"
+                            data-target="#main-menu"
+                            aria-expanded="false"
+                            aria-controls="main-menu">
+
+                        <i class="fa fa-fw fa-1d5x fa-align-justify"></i>
+                    </button>
+                    <!-- /Toggle Button -->
+
+                    <!-- Brand -->
+                    <a href="#" class="brand">
+
+                        <!-- Big Logo -->
+                        <div class="logo-big-container">
+
+                            <!-- Dark Logo -->
+                            <div class="logo-dark">
+                                <img width="250" src="{{ asset('images/newhawlitlogo.png') }}">
+                            </div>
+                            <!-- /Dark Logo -->
+
+                            <!-- White Logo -->
+                            <div class="logo-white">
+                                <img width="250" src="{{ asset('images/newhawlitlogo.png') }}">
+                            </div>
+                            <!-- /White Logo -->
+
+                        </div>
+                        <!-- /Big Logo -->
+
+                        <!-- Small Logo -->
+                        <div class="logo-small-container" style="padding:10px;">
+
+                            <!-- Dark Logo -->
+                            <div class="logo-dark">
+                                <img src="{{ asset('images/newhawlitlogo-small.png') }}">
+                            </div>
+                            <!-- /Dark Logo -->
+
+                            <!-- White Logo -->
+                            <div class="logo-white">
+                                <img src="{{ asset('images/newhawlitlogo-small.png') }}">
+                            </div>
+                            <!-- /White Logo -->
+
+                        </div>
+                        <!-- /Small Logo -->
+
+                    </a>
+                    <!-- /Brand -->
+
+                </div>
+                <!-- /Navigation Header -->
+
+                <!-- Navigation -->
+                <div id="main-menu" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#end">How It Works</a></li>
+                        <li><a href="#partnership">Partnership</a></li>
+                        <li><a href="#sign-up">Sign Up</a></li>
+                    </ul>
+                </div>
+                <!-- /Navigation -->
+
+            </div>
+        </nav>
+        <!-- /Navigation -->
+
+        <!-- Welcome Text -->
+        <div class="full-wh relative" data-stellar-ratio="0.6">
+            <div class="container">
+                <div class="col-md-12 slide-background-container" style="position:absolute;" >
+                    <img class="fadeIn slide-background" style="max-width:100%;" src="{{ asset('images/truck_bg.png') }}">
+                </div>
+                <div class="col-md-6">
+                    <div class="full-wh">
+
+
+                        <div id="text1" class="home-lead animated wow fadeInLeft" style="position:absolute;" data-wow-duration="1.3s" data-wow-delay="0.3s">
+                            <p class="slide-text">Make Money With Your Truck</p>
+                        </div>
+                        <div id="text2" style="display:none;position:absolute;">
+                            <p class="slide-text">Fill Out Your Profile</p>
+                        </div>
+                        <div id="text3" style="display:none;position:absolute;">
+                            <p class="slide-text">Sign Up Now To Get 1 Year Free! ($120 Value)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#sign-up">SIGN UP</a></a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 text-center hidden-sm hidden-xs" style="position:relative;padding-top:80px;">
+                    <div id="phone_truck" class="full-wh" style="position:absolute; display:none;">
+                        <img style="width:440px;" src="{{ asset('images/phone_truck.png') }}" class="animated wow" data-wow-duration="2s">
+                    </div>
+                    <div id="couch_truck" class="full-wh" style="position:absolute;">
+                        <img style="width:440px" src="{{ asset('images/couch.png') }}" class="animated wow fadeInRight" data-wow-duration="2s">
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <!-- /Welcome Text -->
+
+    </header>
+    <!-- /Page Header -->
+    <!-- Page Content -->
+    <main class="main-container">
+    {% block content %}
+        <section id="sign-up" class="section">
+            <div class="container">
+
+                <!-- Section Header -->
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <h2 class="section-title title-line">Sign up for <strong>Hawlit.com!</strong></h2>
+                    </div>
+                </div>
+                <!-- /Section Header -->
+
+                <!-- Section Content -->
+                <div class="row section-content animated wow flipInY" data-wow-delay="0.3s" data-wow-duration="1s">
+
+                    <!-- Contact Form -->
+                    <div class="col-md-8 col-md-offset-2 contact-form">
+
+                        <h3 style="text-align:center;margin-bottom:30px;">Sign Up Now to Receive Your 1st Year Free! ($120 Value)</h3>
+                        {{ form_start(form, {attr:{class:"form-ajax"}}) }}
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    {{ form_widget(form.name) }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {{ form_widget(form.email) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    {{ form_widget(form.truck) }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-12 text-center">
+                                    <button type="submit" class="btn btn-purple"><i class="fa fa-paper-plane-o"></i> Send Message</button>
+                                </div>
+                            </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                    <!-- /Contact Form -->
+                </div>
+            </div>
+        </section>
+        <!-- /Section Content -->
+        <!-- Section: End -->
+        <section id="end" class="section-small">
+            <div class="container">
+
+                <!-- Section Content -->
+                <div class="row">
+                    <div id="how-it-works-carousel" class="owl-carousel owl-theme">
+
+                        <!-- Screenshot -->
+                        <div class="item">
+
+                            <div class="col-md-4 hidden-sm hidden-xs text-center">
+                                <div class="">
+                                    <img src="{{ asset('images/iphone.png') }}" class="animated wow fadeInLeft" data-wow-duration="2s">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="vertical-middle">
+
+                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.3s">1) Open Hawlit</div>
+                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="1.3s">2) Describe Your Job</div>
+                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="2.3s">3) Set Your Price</div>
+                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="3.3s">4) Post</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div class="col-md-4 hidden-sm hidden-xs text-center">
+                                <div class="">
+                                    <img src="{{ asset('images/iphone2.png') }}" class="animated wow fadeIn" data-wow-duration="2s">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="vertical-middle">
+
+                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.3s">1) Receive Multiple Driver Profiles</div>
+                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="1.3s">2) Choose From Profiles</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div class="col-md-4 hidden-sm hidden-xs text-center">
+                                <div class="">
+                                    <img src="{{ asset('images/iphone3.png') }}" class="animated wow fadeIn" data-wow-duration="2s">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="vertical-middle">
+
+                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.3s">1) Pay $10 for Driver Contact Info</div>
+                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="1.3s">2) Connect and Complete Job</div>
+                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="2.3s">3) Rate the Truck</div>
+                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="3.3s">4) Tell a Friend</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /Section Content -->
+            </div>
+        </section>
+
+        <section id="partnership" class="section">
+            <div class="container">
+
+                <!-- Section Header -->
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <h2 class="section-title title-line"><strong>Partnership</strong></h2>
+                    </div>
+                </div>
+                <!-- /Section Header -->
+
+                <!-- Section Content -->
+                <div class="row section-content animated wow flipInY" style="margin-top:0;" data-wow-delay="0.3s" data-wow-duration="1s">
+
+                    <!-- Contact Form -->
+                    <div class="col-md-8 col-md-offset-2 contact-form">
+                        <h3 style="text-align:center;">Hawlit is poised to become the next big player in the sharing app space.</h3>
+                        <p>We are currently seeking partnerships in both equity investment and marketing alignments</p>
+
+                        <p>With the overwhelming success of Uber and others in the sharing space the concept of a personal vehicle becoming an income stream is a proven business model.
+                            The specific model that sets Hawlit apart  is the simplicity and the endeavor to stay as free of liability as possible in this litigious age. Hawlit simply connects a willing pickup owner with a moving need. The actual money exchange is entirely between the parties.</p>
+
+                        <p>Monetization is achieved by charging a 10 dollar flat fee for the contact info of a pick up truck owner that has agreed to perform the job at a self set price
+                            a subscription fee of 10 dollars  per month will be charged for each truck stored in the data base.</p>
+
+                        <p>We will launch in <b>Las Vegas</b>, an extremely transient city with a healthy growth rate.</p>
+                        <ul><li>There are over 180,000 pickup trucks registered in clark county</li>
+                            <li>There are over 18000 self storage units  rented each month</li>
+                            <li>There are  20 thousand  apartments rented each month</li>
+                            <li>There are hundreds of couches listed for sale on craigslist every day</li>
+                            <li>Wind storms blow down trees</li>
+                            <li>Swimming pool furniture is replaced</li>
+                            <li>Appliances are upgraded</li></ul>
+                        <br/>
+                        <h4>People need a friend with a truck… HAWLIT.com</h4>
+
+                        <p>Phase one rollout is the buildup of truck owner contact info.<br/>
+                            The first one hundred pickup trucks to sign up will receive a free yearly subscription<br/>
+                            A crowdfunding campaign will be launched targeting the same pickup truck owners that are subscribers . A company owned by its members will have an enormous marketing foothold.</p>
+
+                        <p>We will offer a link to a background check service , offering yet another monetization stream<br/>
+                            Also a link to an insurance company offering a one day policy would offer another financial alliance</p>
+
+                        <p>Registered as a Nevada LLC</p>
+
+                        <p>Contact <a href="mailto:matt@hawlit.com">matt@hawlit.com</a> for more information </p>
+
+                    </div>
+                    <!-- /Contact Form -->
+
+
+                </div>
+                <!-- /Section Content -->
+            </div>
+        </section>
+    {% endblock %}
+    </main>
+    <!-- /Page Content -->
+
+    <!-- Page Footer -->
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8">
+                    &copy; 2017&copy; Hawlit.com. All rights reserved.
+                </div>
+                <div class="col-xs-4 footer-social">
+                    <a href="#" class="icon fa fa-fw fa-facebook"></a>
+                    <a href="#" class="icon fa fa-fw fa-twitter"></a>
+                    <a href="#" class="icon fa fa-fw fa-google-plus"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Page Footer -->
+
+    <!-- Scroll To Top -->
+    <div id="scroll-to-top" class="scroll-to-top scroll-hided">
+        <i class="icon fa fa-angle-up"></i>
+    </div>
+    <!-- /Scroll To Top -->
+
+    <!-- Modal: Result Message -->
+    <div class="modal fade" id="result" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <div class="modal-title h3 section-title title-line">Sign Up Successful</div>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-result h4"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal: Result Message -->
+{% endblock %}
+
+{% block stylesheets %}
+    {#<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>#}
+    {#<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>#}
+    <link href="{{ asset('css/theme.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap-ancient.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script src="{{ asset('js/general.js') }}"></script>
+{% endblock %}

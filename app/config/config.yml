@@ -10,6 +10,7 @@ parameters:
     locale: en
     menu_namespace: AppBundle\Controller
     menu_directory: AppBundle/Controller
+    knp.doctrine_behaviors.loggable_subscriber.logger_callable.class: AppBundle\Util\SettingLoggerCallable
 
 framework:
     #esi: ~
@@ -69,6 +70,17 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+
+knp_doctrine_behaviors:
+    blameable:      false
+    geocodable:     false
+    loggable:       true
+    sluggable:      false
+    soft_deletable: true
+    sortable:       false
+    timestampable:  false
+    translatable:   false
+    tree:           false
 
 # Swiftmailer Configuration
 swiftmailer:

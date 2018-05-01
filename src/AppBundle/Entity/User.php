@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * User
@@ -16,6 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements AdvancedUserInterface, EquatableInterface, \Serializable
 {
+	use ORMBehaviors\SoftDeletable\SoftDeletable;
     /**
      * @var int
      *
@@ -625,12 +627,15 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     }
 
     /**
-     * Checks whether the user's account is not expired, not locked, and enabled.
+     * Checks whether the user's account is not deleted, not expired, not locked, and enabled.
      *
      * @return bool true if the user's account is valid, false otherwise
      */
     public function isValid()
     {
+    	if ($this->isDeleted()) {
+    		return false;
+	    }
         if (!$this->isAccountNonExpired()) {
             return false;
         }
