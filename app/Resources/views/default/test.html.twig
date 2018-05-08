@@ -78,8 +78,9 @@
                 <!-- Navigation -->
                 <div id="main-menu" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#end">How It Works</a></li>
-                        <li><a href="#partnership">Partnership</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#haveatruck">I Have a Truck</a></li>
+                        <li><a href="#needatruck">I Need a Truck</a></li>
                         <li><a href="#sign-up">Sign Up</a></li>
                     </ul>
                 </div>
@@ -131,7 +132,59 @@
     <!-- Page Content -->
     <main class="main-container">
     {% block content %}
-        <section id="sign-up" class="section">
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+      <!--
+<div class="jumbotron">
+  <h1 class="display-4">Hello, world!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
+  </div>
+</div>
+-->
+<div class="cta">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h2>Your friend with a truck.</h2>
+    </div>
+  </div>
+</div>
+<div class="row">
+ <div id="haveatruck" class="col-sm-12 col-md-6 col-lg-6">
+    <a class="button">
+      <span>I have a truck</span>
+    </a>
+   <div class="text">
+     Make money with your truck. <b>It's easy!</b>
+     <ol>
+         <li>Complete your profile.</li>
+         <li>Review current job listings.</li>
+         <li>Apply to the ones that interest you.</li>
+         <li>Show up, get paid, and you're done!</li>
+     </ol>
+     <br /><br />
+     <b>Just $10/mo.</b>
+   </div>
+  </div>
+  <div id="needatruck" class="col-sm-12 col-md-6 col-lg-6">
+    <a class="button">
+      <span>I need a truck</span>
+    </a>
+    <div class="text">
+      Getting started is simple.
+      <ol>
+        <li>Post your job.</li>
+        <li>Receive interested drivers.</li>
+        <li>Pick your favorite, and <b>receive driver contact information for only $10</b>.
+      </ol>
+    </div>
+  </div>
+</div>
+    <div class="cta">
+<section id="sign-up" class="section">
             <div class="container">
 
                 <!-- Section Header -->
@@ -167,7 +220,7 @@
 
                             <div class="row">
                                 <div class="form-group col-md-12 text-center">
-                                    <button type="submit" class="btn btn-purple"><i class="fa fa-paper-plane-o"></i> Send Message</button>
+                                    <button type="submit" class="btn btn-white-hollow"><i class="fa fa-paper-plane-o"></i> Send Message</button>
                                 </div>
                             </div>
 
@@ -176,131 +229,10 @@
                     <!-- /Contact Form -->
                 </div>
             </div>
-        </section>
+        </section>      
+    </div>
         <!-- /Section Content -->
         <!-- Section: End -->
-        <section id="end" class="section-small">
-            <div class="container">
-
-                <!-- Section Content -->
-                <div class="row">
-                    <div id="how-it-works-carousel" class="owl-carousel owl-theme">
-
-                        <!-- Screenshot -->
-                        <div class="item">
-
-                            <div class="col-md-4 hidden-sm hidden-xs text-center">
-                                <div class="">
-                                    <img src="{{ asset('images/iphone.png') }}" class="animated wow fadeInLeft" data-wow-duration="2s">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="vertical-middle">
-
-                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.3s">1) Open Hawlit</div>
-                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="1.3s">2) Describe Your Job</div>
-                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="2.3s">3) Set Your Price</div>
-                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="3.3s">4) Post</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-
-                            <div class="col-md-4 hidden-sm hidden-xs text-center">
-                                <div class="">
-                                    <img src="{{ asset('images/iphone2.png') }}" class="animated wow fadeIn" data-wow-duration="2s">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="vertical-middle">
-
-                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.3s">1) Receive Multiple Driver Profiles</div>
-                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="1.3s">2) Choose From Profiles</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-
-                            <div class="col-md-4 hidden-sm hidden-xs text-center">
-                                <div class="">
-                                    <img src="{{ asset('images/iphone3.png') }}" class="animated wow fadeIn" data-wow-duration="2s">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="vertical-middle">
-
-                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.3s">1) Pay $10 for Driver Contact Info</div>
-                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="1.3s">2) Connect and Complete Job</div>
-                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="2.3s">3) Rate the Truck</div>
-                                    <div class="section-title h1 text-white animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="3.3s">4) Tell a Friend</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- /Section Content -->
-            </div>
-        </section>
-
-        <section id="partnership" class="section">
-            <div class="container">
-
-                <!-- Section Header -->
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 text-center">
-                        <h2 class="section-title title-line"><strong>Partnership</strong></h2>
-                    </div>
-                </div>
-                <!-- /Section Header -->
-
-                <!-- Section Content -->
-                <div class="row section-content animated wow flipInY" style="margin-top:0;" data-wow-delay="0.3s" data-wow-duration="1s">
-
-                    <!-- Contact Form -->
-                    <div class="col-md-8 col-md-offset-2 contact-form">
-                        <h3 style="text-align:center;">Hawlit is poised to become the next big player in the sharing app space.</h3>
-                        <p>We are currently seeking partnerships in both equity investment and marketing alignments</p>
-
-                        <p>With the overwhelming success of Uber and others in the sharing space the concept of a personal vehicle becoming an income stream is a proven business model.
-                            The specific model that sets Hawlit apart  is the simplicity and the endeavor to stay as free of liability as possible in this litigious age. Hawlit simply connects a willing pickup owner with a moving need. The actual money exchange is entirely between the parties.</p>
-
-                        <p>Monetization is achieved by charging a 10 dollar flat fee for the contact info of a pick up truck owner that has agreed to perform the job at a self set price
-                            a subscription fee of 10 dollars  per month will be charged for each truck stored in the data base.</p>
-
-                        <p>We will launch in <b>Las Vegas</b>, an extremely transient city with a healthy growth rate.</p>
-                        <ul><li>There are over 180,000 pickup trucks registered in clark county</li>
-                            <li>There are over 18000 self storage units  rented each month</li>
-                            <li>There are  20 thousand  apartments rented each month</li>
-                            <li>There are hundreds of couches listed for sale on craigslist every day</li>
-                            <li>Wind storms blow down trees</li>
-                            <li>Swimming pool furniture is replaced</li>
-                            <li>Appliances are upgraded</li></ul>
-                        <br/>
-                        <h4>People need a friend with a truck… HAWLIT.com</h4>
-
-                        <p>Phase one rollout is the buildup of truck owner contact info.<br/>
-                            The first one hundred pickup trucks to sign up will receive a free yearly subscription<br/>
-                            A crowdfunding campaign will be launched targeting the same pickup truck owners that are subscribers . A company owned by its members will have an enormous marketing foothold.</p>
-
-                        <p>We will offer a link to a background check service , offering yet another monetization stream<br/>
-                            Also a link to an insurance company offering a one day policy would offer another financial alliance</p>
-
-                        <p>Registered as a Nevada LLC</p>
-
-                        <p>Contact <a href="mailto:matt@hawlit.com">matt@hawlit.com</a> for more information </p>
-
-                    </div>
-                    <!-- /Contact Form -->
-
-
-                </div>
-                <!-- /Section Content -->
-            </div>
-        </section>
     {% endblock %}
     </main>
     <!-- /Page Content -->
@@ -351,6 +283,7 @@
     {#<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>#}
     {#<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>#}
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/landingpage.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block javascripts %}

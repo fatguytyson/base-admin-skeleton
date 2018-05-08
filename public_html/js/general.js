@@ -225,9 +225,9 @@ $(function($) {
         $preloader.delay(500).fadeOut('slow');
         $("#phone_truck").delay(4000).fadeIn();
         $("#couch_truck").delay(4000).fadeOut();
-        $("#text2").delay(4300).fadeIn().delay(2800).fadeOut(200);
-        $("#text1").delay(4300).fadeOut();
-        $("#text3").delay(7100).fadeIn();
+        // $("#text2").delay(4300).fadeIn().delay(2800).fadeOut(200);
+        // $("#text1").delay(4300).fadeOut();
+        // $("#text3").delay(7100).fadeIn();
 
         $body.addClass('loaded');
 
