@@ -11,71 +11,71 @@
     <!-- Page Header -->
     <header id="home" data-stellar-background-ratio="0.4">
 
-        <!-- Navigation -->
-        <nav id="navigation" class="navbar">
-            <div class="container">
+        {#<!-- Navigation -->#}
+        {#<nav id="navigation" class="navbar">#}
+            {#<div class="container">#}
 
-                <!-- Navigation Header -->
-                <div class="navbar-header">
+                {#<!-- Navigation Header -->#}
+                {#<div class="navbar-header">#}
 
-                    <!-- Toggle Button -->
-                    <button type="button"
-                            class="navbar-toggle collapsed"
-                            data-toggle="collapse"
-                            data-target="#main-menu"
-                            aria-expanded="false"
-                            aria-controls="main-menu">
+                    {#<!-- Toggle Button -->#}
+                    {#<button type="button"#}
+                            {#class="navbar-toggle collapsed"#}
+                            {#data-toggle="collapse"#}
+                            {#data-target="#main-menu"#}
+                            {#aria-expanded="false"#}
+                            {#aria-controls="main-menu">#}
 
-                        <i class="fa fa-fw fa-1d5x fa-align-justify"></i>
-                    </button>
-                    <!-- /Toggle Button -->
+                        {#<i class="fa fa-fw fa-1d5x fa-align-justify"></i>#}
+                    {#</button>#}
+                    {#<!-- /Toggle Button -->#}
 
-                    <!-- Brand -->
-                    <a href="{{ path('homepage') }}" class="brand">
+                    {#<!-- Brand -->#}
+                    {#<a href="{{ path('homepage') }}" class="brand">#}
 
-                        <!-- Big Logo -->
-                        <div class="logo-big-container">
+                        {#<!-- Big Logo -->#}
+                        {#<div class="logo-big-container">#}
 
-                            <!-- Dark Logo -->
-                            <div class="logo-dark">
-                                <img width="250" src="{{ asset('images/newhawlitlogo.png') }}">
-                            </div>
-                            <!-- /Dark Logo -->
+                            {#<!-- Dark Logo -->#}
+                            {#<div class="logo-dark">#}
+                                {#<img width="250" src="{{ asset('images/newhawlitlogo.png') }}">#}
+                            {#</div>#}
+                            {#<!-- /Dark Logo -->#}
 
-                            <!-- White Logo -->
-                            <div class="logo-white">
-                                <img width="250" src="{{ asset('images/newhawlitlogo.png') }}">
-                            </div>
-                            <!-- /White Logo -->
+                            {#<!-- White Logo -->#}
+                            {#<div class="logo-white">#}
+                                {#<img width="250" src="{{ asset('images/newhawlitlogo.png') }}">#}
+                            {#</div>#}
+                            {#<!-- /White Logo -->#}
 
-                        </div>
-                        <!-- /Big Logo -->
+                        {#</div>#}
+                        {#<!-- /Big Logo -->#}
 
-                        <!-- Small Logo -->
-                        <div class="logo-small-container" style="padding:10px;">
+                        {#<!-- Small Logo -->#}
+                        {#<div class="logo-small-container" style="padding:10px;">#}
 
-                            <!-- Dark Logo -->
-                            <div class="logo-dark">
-                                <img src="{{ asset('images/newhawlitlogo-small.png') }}">
-                            </div>
-                            <!-- /Dark Logo -->
+                            {#<!-- Dark Logo -->#}
+                            {#<div class="logo-dark">#}
+                                {#<img src="{{ asset('images/newhawlitlogo-small.png') }}">#}
+                            {#</div>#}
+                            {#<!-- /Dark Logo -->#}
 
-                            <!-- White Logo -->
-                            <div class="logo-white">
-                                <img src="{{ asset('images/newhawlitlogo-small.png') }}">
-                            </div>
-                            <!-- /White Logo -->
+                            {#<!-- White Logo -->#}
+                            {#<div class="logo-white">#}
+                                {#<img src="{{ asset('images/newhawlitlogo-small.png') }}">#}
+                            {#</div>#}
+                            {#<!-- /White Logo -->#}
 
-                        </div>
-                        <!-- /Small Logo -->
+                        {#</div>#}
+                        {#<!-- /Small Logo -->#}
 
-                    </a>
-                    <!-- /Brand -->
+                    {#</a>#}
+                    {#<!-- /Brand -->#}
 
-                </div>
-                <!-- /Navigation Header -->
+                {#</div>#}
+                {#<!-- /Navigation Header -->#}
 
-                <!-- Navigation -->
+                {#<!-- Navigation -->#}
                 {#<div id="main-menu" class="navbar-collapse collapse">#}
                     {#<ul class="nav navbar-nav navbar-right">#}
                         {#<li><a href="#end">How It Works</a></li>#}
@@ -83,22 +83,26 @@
                         {#<li><a href="#sign-up">Sign Up</a></li>#}
                     {#</ul>#}
                 {#</div>#}
-                <!-- /Navigation -->
+                {#<!-- /Navigation -->#}
 
-            </div>
-        </nav>
-        <!-- /Navigation -->
+            {#</div>#}
+        {#</nav>#}
+        {#<!-- /Navigation -->#}
 
         <!-- Welcome Text -->
         <div class="full-wh relative" data-stellar-ratio="0.6">
             <div class="container">
+                <img src="{{ asset('images/newhawlitlogo.png') }}" style="display: block; margin: 0 auto; width: 250px;" alt="Hawlit.com">
+                <div class="text-center">
+                    <h4>"Your Friend With A Truck"</h4>
+                </div>
                 <div class="col-md-12 slide-background-container" style="position:absolute;" >
                     <img class="fadeIn slide-background" style="max-width:100%;" src="{{ asset('images/truck_bg.png') }}">
                 </div>
-                <div class="col-md-6">
+                <div class="col-12">
                     <div class="full-wh">
-                        <div id="text1" class="home-lead animated wow fadeInLeft" style="position:absolute;" data-wow-duration="1.3s" data-wow-delay="0.3s">
-                            <p class="slide-text">Make Money With Your Truck</p>
+                        <div id="text1" class="home-lead animated wow fadeInLeft text-center" data-wow-duration="1.3s" data-wow-delay="0.3s">
+                            <p class="slide-text" style="color: black;">Make Money With Your Truck</p>
                         </div>
                         {#<div id="text2" style="display:none;position:absolute;">#}
                             {#<p class="slide-text">Fill Out Your Profile</p>#}
