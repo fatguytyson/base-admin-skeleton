@@ -493,6 +493,7 @@ class Job
      */
     public function addJoined(\AppBundle\Entity\User $joined)
     {
+    	$joined->addJobsJoined($this);
         $this->joined[] = $joined;
 
         return $this;
@@ -507,6 +508,7 @@ class Job
      */
     public function removeJoined(\AppBundle\Entity\User $joined)
     {
+    	$joined->removeJobsJoined($this);
         return $this->joined->removeElement($joined);
     }
 
@@ -553,6 +555,7 @@ class Job
      */
     public function addNotified(\AppBundle\Entity\User $notified)
     {
+    	$notified->addJobsNotified($this);
         $this->notified[] = $notified;
 
         return $this;
@@ -567,6 +570,7 @@ class Job
      */
     public function removeNotified(\AppBundle\Entity\User $notified)
     {
+    	$notified->removeJobsNotified($this);
         return $this->notified->removeElement($notified);
     }
 
@@ -589,6 +593,7 @@ class Job
      */
     public function addViewed(\AppBundle\Entity\User $viewed)
     {
+    	$viewed->addJobsViewed($this);
         $this->viewed[] = $viewed;
 
         return $this;
@@ -603,6 +608,7 @@ class Job
      */
     public function removeViewed(\AppBundle\Entity\User $viewed)
     {
+    	$viewed->removeJobsViewed($this);
         return $this->viewed->removeElement($viewed);
     }
 
