@@ -457,6 +457,8 @@ class Job
      */
     public function getEmail()
     {
+    	if ($this->poster)
+    		return $this->poster->getEmailCanon();
         return $this->email;
     }
 
@@ -470,6 +472,9 @@ class Job
     public function setPoster(\AppBundle\Entity\User $poster = null)
     {
         $this->poster = $poster;
+
+        if ($poster)
+        	$this->email = $poster->getEmailCanon();
 
         return $this;
     }
