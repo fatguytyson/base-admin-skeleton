@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
@@ -131,15 +132,63 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
      */
     private $roles;
 
+	/**
+	 * @var ArrayCollection
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Profile", mappedBy="user")
+	 */
+    private $profile;
+
+	/**
+	 * @var ArrayCollection
+	 *
+	 * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Job", mappedBy="joined")
+	 */
+	private $jobsJoined;
+
+	/**
+	 * @var ArrayCollection
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Job", mappedBy="accepted")
+	 */
+	private $jobsAccepted;
+
+	/**
+	 * @var ArrayCollection
+	 *
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Job", mappedBy="posted")
+	 */
+	private $jobsPosted;
+
+	/**
+	 * @var ArrayCollection
+	 *
+	 * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Job", mappedBy="notified")
+	 */
+	private $jobsNotified;
+
+	/**
+	 * @var ArrayCollection
+	 *
+	 * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Job", mappedBy="viewed")
+	 */
+	private $jobsViewed;
+
     /**
      * User constructor.
      */
     public function __construct()
     {
-        $this->enabled = false;
-        $this->expired = false;
-        $this->locked  = false;
-        $this->roles   = array();
+        $this->enabled      = false;
+        $this->expired      = false;
+        $this->locked       = false;
+        $this->roles        = array();
+	    $this->profile      = new ArrayCollection();
+	    $this->jobsJoined   = new ArrayCollection();
+	    $this->jobsAccepted = new ArrayCollection();
+	    $this->jobsPosted   = new ArrayCollection();
+	    $this->jobsNotified = new ArrayCollection();
+	    $this->jobsViewed   = new ArrayCollection();
     }
 
     /**
@@ -673,5 +722,221 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
             $this->locked,
             $this->expired
             ) = unserialize($serialized);
+    }
+
+    /**
+     * Add profile.
+     *
+     * @param \AppBundle\Entity\Profile $profile
+     *
+     * @return User
+     */
+    public function addProfile(\AppBundle\Entity\Profile $profile)
+    {
+        $this->profile[] = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Remove profile.
+     *
+     * @param \AppBundle\Entity\Profile $profile
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeProfile(\AppBundle\Entity\Profile $profile)
+    {
+        return $this->profile->removeElement($profile);
+    }
+
+    /**
+     * Get profile.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * Add jobsJoined.
+     *
+     * @param \AppBundle\Entity\Job $jobsJoined
+     *
+     * @return User
+     */
+    public function addJobsJoined(\AppBundle\Entity\Job $jobsJoined)
+    {
+        $this->jobsJoined[] = $jobsJoined;
+
+        return $this;
+    }
+
+    /**
+     * Remove jobsJoined.
+     *
+     * @param \AppBundle\Entity\Job $jobsJoined
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeJobsJoined(\AppBundle\Entity\Job $jobsJoined)
+    {
+        return $this->jobsJoined->removeElement($jobsJoined);
+    }
+
+    /**
+     * Get jobsJoined.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJobsJoined()
+    {
+        return $this->jobsJoined;
+    }
+
+    /**
+     * Add jobsAccepted.
+     *
+     * @param \AppBundle\Entity\Job $jobsAccepted
+     *
+     * @return User
+     */
+    public function addJobsAccepted(\AppBundle\Entity\Job $jobsAccepted)
+    {
+        $this->jobsAccepted[] = $jobsAccepted;
+
+        return $this;
+    }
+
+    /**
+     * Remove jobsAccepted.
+     *
+     * @param \AppBundle\Entity\Job $jobsAccepted
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeJobsAccepted(\AppBundle\Entity\Job $jobsAccepted)
+    {
+        return $this->jobsAccepted->removeElement($jobsAccepted);
+    }
+
+    /**
+     * Get jobsAccepted.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJobsAccepted()
+    {
+        return $this->jobsAccepted;
+    }
+
+    /**
+     * Add jobsPosted.
+     *
+     * @param \AppBundle\Entity\Job $jobsPosted
+     *
+     * @return User
+     */
+    public function addJobsPosted(\AppBundle\Entity\Job $jobsPosted)
+    {
+        $this->jobsPosted[] = $jobsPosted;
+
+        return $this;
+    }
+
+    /**
+     * Remove jobsPosted.
+     *
+     * @param \AppBundle\Entity\Job $jobsPosted
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeJobsPosted(\AppBundle\Entity\Job $jobsPosted)
+    {
+        return $this->jobsPosted->removeElement($jobsPosted);
+    }
+
+    /**
+     * Get jobsPosted.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJobsPosted()
+    {
+        return $this->jobsPosted;
+    }
+
+    /**
+     * Add jobsNotified.
+     *
+     * @param \AppBundle\Entity\Job $jobsNotified
+     *
+     * @return User
+     */
+    public function addJobsNotified(\AppBundle\Entity\Job $jobsNotified)
+    {
+        $this->jobsNotified[] = $jobsNotified;
+
+        return $this;
+    }
+
+    /**
+     * Remove jobsNotified.
+     *
+     * @param \AppBundle\Entity\Job $jobsNotified
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeJobsNotified(\AppBundle\Entity\Job $jobsNotified)
+    {
+        return $this->jobsNotified->removeElement($jobsNotified);
+    }
+
+    /**
+     * Get jobsNotified.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJobsNotified()
+    {
+        return $this->jobsNotified;
+    }
+
+    /**
+     * Add jobsViewed.
+     *
+     * @param \AppBundle\Entity\Job $jobsViewed
+     *
+     * @return User
+     */
+    public function addJobsViewed(\AppBundle\Entity\Job $jobsViewed)
+    {
+        $this->jobsViewed[] = $jobsViewed;
+
+        return $this;
+    }
+
+    /**
+     * Remove jobsViewed.
+     *
+     * @param \AppBundle\Entity\Job $jobsViewed
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeJobsViewed(\AppBundle\Entity\Job $jobsViewed)
+    {
+        return $this->jobsViewed->removeElement($jobsViewed);
+    }
+
+    /**
+     * Get jobsViewed.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJobsViewed()
+    {
+        return $this->jobsViewed;
     }
 }

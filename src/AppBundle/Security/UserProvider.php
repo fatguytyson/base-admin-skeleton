@@ -40,6 +40,17 @@ class UserProvider implements UserProviderInterface
         return $user;
     }
 
+    public function getUsernameForApiKey($apikey)
+    {
+    	$user = $this->um->findUserBy(['apikey' => $apikey]);
+
+	    if (!$user) {
+		    throw new UsernameNotFoundException(sprintf('ApiKey "%s" does not exist.', $apikey));
+	    }
+
+	    return $user->getUsername();
+    }
+
     /**
      * {@inheritDoc}
      */
