@@ -1,9 +1,15 @@
 <?php
+/**
+ * Copyright (c) 2018. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
+ */
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 use AppBundle\Form\SettingsType;
-use AppBundle\Util\SettingLoggerCallable;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use FGC\MenuBundle\Annotation\Menu;
@@ -13,7 +19,7 @@ class StripeSettingsController extends Controller
 {
     /**
      * @Route("/admin/stripesettings")
-     * @Menu("Stripe Settings", route="app_stripesettings_default", icon="money", order=2, group="admin", role="ROLE_ADMIN")
+     * @Menu("Stripe Settings", route="app_admin_stripesettings_default", icon="money", order=2, group="admin", role="ROLE_ADMIN")
      */
     public function defaultAction(Request $request)
     {
@@ -35,7 +41,7 @@ class StripeSettingsController extends Controller
     	if ($form->isSubmitted() && $form->isValid()) {
     		$this->getDoctrine()->getManager()->flush();
     		$this->addFlash('success', 'Settings updated.');
-    		return $this->redirectToRoute('app_stripesettings_default');
+    		return $this->redirectToRoute('app_admin_stripesettings_default');
 	    }
 
         return $this->render('admin/stripesettings.html.twig', array(
