@@ -12,13 +12,10 @@
     <header id="home" data-stellar-background-ratio="0.4">
 
         <!-- Navigation -->
+        <!--
         <nav id="navigation" class="navbar">
             <div class="container">
-
-                <!-- Navigation Header -->
                 <div class="navbar-header">
-
-                    <!-- Toggle Button -->
                     <button type="button"
                             class="navbar-toggle collapsed"
                             data-toggle="collapse"
@@ -28,54 +25,25 @@
 
                         <i class="fa fa-fw fa-1d5x fa-align-justify"></i>
                     </button>
-                    <!-- /Toggle Button -->
-
-                    <!-- Brand -->
                     <a href="#" class="brand">
-
-                        <!-- Big Logo -->
                         <div class="logo-big-container">
-
-                            <!-- Dark Logo -->
                             <div class="logo-dark">
                                 <img width="250" src="{{ asset('images/newhawlitlogo.png') }}">
                             </div>
-                            <!-- /Dark Logo -->
-
-                            <!-- White Logo -->
                             <div class="logo-white">
                                 <img width="250" src="{{ asset('images/newhawlitlogo.png') }}">
                             </div>
-                            <!-- /White Logo -->
-
                         </div>
-                        <!-- /Big Logo -->
-
-                        <!-- Small Logo -->
                         <div class="logo-small-container" style="padding:10px;">
-
-                            <!-- Dark Logo -->
                             <div class="logo-dark">
                                 <img src="{{ asset('images/newhawlitlogo-small.png') }}">
                             </div>
-                            <!-- /Dark Logo -->
-
-                            <!-- White Logo -->
                             <div class="logo-white">
                                 <img src="{{ asset('images/newhawlitlogo-small.png') }}">
                             </div>
-                            <!-- /White Logo -->
-
                         </div>
-                        <!-- /Small Logo -->
-
                     </a>
-                    <!-- /Brand -->
-
                 </div>
-                <!-- /Navigation Header -->
-
-                <!-- Navigation -->
                 <div id="main-menu" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">Home</a></li>
@@ -84,43 +52,45 @@
                         <li><a href="#sign-up">Sign Up</a></li>
                     </ul>
                 </div>
-                <!-- /Navigation -->
-
             </div>
         </nav>
-        <!-- /Navigation -->
+-->
 
         <!-- Welcome Text -->
         <div class="full-wh relative" data-stellar-ratio="0.6">
             <div class="container">
+                <img src="{{ asset('images/newhawlitlogo.png') }}" style="display: block; margin: 0 auto; width: 250px;" alt="Hawlit.com">
+                <div class="text-center">
+                    <h4>"Your Friend With A Truck"</h4>
+                </div>
                 <div class="col-md-12 slide-background-container" style="position:absolute;" >
                     <img class="fadeIn slide-background" style="max-width:100%;" src="{{ asset('images/truck_bg.png') }}">
                 </div>
-                <div class="col-md-6">
+                <div class="col-12">
                     <div class="full-wh">
 
 
-                        <div id="text1" class="home-lead animated wow fadeInLeft" style="position:absolute;" data-wow-duration="1.3s" data-wow-delay="0.3s">
+                        <div id="text1" class="home-lead animated wow fadeInLeft text-center" style="" data-wow-duration="1.3s" data-wow-delay="0.3s">
                             <p class="slide-text">Make Money With Your Truck</p>
                         </div>
-                        <div id="text2" style="display:none;position:absolute;">
-                            <p class="slide-text">Fill Out Your Profile</p>
-                        </div>
-                        <div id="text3" style="display:none;position:absolute;">
-                            <p class="slide-text">Sign Up Now To Get 1 Year Free! ($120 Value)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#sign-up">SIGN UP</a></a></p>
-                        </div>
+                        {#<div id="text2" style="display:none;position:absolute;">#}
+                            {#<p class="slide-text">Fill Out Your Profile</p>#}
+                        {#</div>#}
+                        {#<div id="text3" style="display:none;position:absolute;">#}
+                            {#<!--<p class="slide-text">Sign Up Now To Get 1 Year Free! ($120 Value)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#sign-up">SIGN UP</a></a></p> -->#}
+                        {#</div>#}
                     </div>
                 </div>
 
-                <div class="col-md-6 text-center hidden-sm hidden-xs" style="position:relative;padding-top:80px;">
-                    <div id="phone_truck" class="full-wh" style="position:absolute; display:none;">
-                        <img style="width:440px;" src="{{ asset('images/phone_truck.png') }}" class="animated wow" data-wow-duration="2s">
-                    </div>
-                    <div id="couch_truck" class="full-wh" style="position:absolute;">
-                        <img style="width:440px" src="{{ asset('images/couch.png') }}" class="animated wow fadeInRight" data-wow-duration="2s">
-                    </div>
+                {#<div class="col-md-6 text-center hidden-sm hidden-xs" style="position:relative;padding-top:80px;">#}
+                    {#<div id="phone_truck" class="full-wh" style="position:absolute; display:none;">#}
+                        {#<img style="width:440px;" src="{{ asset('images/phone_truck.png') }}" class="animated wow" data-wow-duration="2s">#}
+                    {#</div>#}
+                    {#<div id="couch_truck" class="full-wh" style="position:absolute;">#}
+                        {#<img style="width:440px" src="{{ asset('images/couch.png') }}" class="animated wow fadeInRight" data-wow-duration="2s">#}
+                    {#</div>#}
 
-                </div>
+                {#</div>#}
 
 
             </div>
@@ -145,6 +115,7 @@
   </div>
 </div>
 -->
+<!--
 <div class="cta">
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
@@ -152,6 +123,7 @@
     </div>
   </div>
 </div>
+-->
 <div class="row">
  <div id="haveatruck" class="col-sm-12 col-md-6 col-lg-6">
     <a class="button">
@@ -159,7 +131,7 @@
     </a>
    <div class="text">
      Make money with your truck. <b>It's easy!</b>
-     <ol>
+     <ol style="list-style:none;">
          <li>Complete your profile.</li>
          <li>Review current job listings.</li>
          <li>Apply to the ones that interest you.</li>
@@ -175,7 +147,7 @@
     </a>
     <div class="text">
       Getting started is simple.
-      <ol>
+      <ol style="list-style: none;">
         <li>Post your job.</li>
         <li>Receive interested drivers.</li>
         <li>Pick your favorite, and <b>receive driver contact information for only $10</b>.
@@ -190,7 +162,7 @@
                 <!-- Section Header -->
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3 text-center">
-                        <h2 class="section-title title-line">Sign up for <strong>Hawlit.com!</strong></h2>
+                        <h2 class="section-title title-line">Contact us at <b>(702) 988-HAWL.</strong></h2>
                     </div>
                 </div>
                 <!-- /Section Header -->
@@ -200,8 +172,10 @@
 
                     <!-- Contact Form -->
                     <div class="col-md-8 col-md-offset-2 contact-form">
-
+                        <!--
                         <h3 style="text-align:center;margin-bottom:30px;">Sign Up Now to Receive Your 1st Year Free! ($120 Value)</h3>
+                        -->
+                        <!--
                         {{ form_start(form, {attr:{class:"form-ajax"}}) }}
                             <div class="row">
                                 <div class="form-group col-md-6">
@@ -225,6 +199,7 @@
                             </div>
 
                         {{ form_end(form) }}
+                        -->
                     </div>
                     <!-- /Contact Form -->
                 </div>
@@ -296,4 +271,11 @@
     <script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/general.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#slide-ltc").show("slide", {
+                direction: "left"
+            }, 1000);
+        });
+    </script>
 {% endblock %}
