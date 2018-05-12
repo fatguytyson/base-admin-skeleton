@@ -15,12 +15,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DevController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/{path}", requirements={"path"=".*"})
      */
-    public function testAction()
+    public function testAction($path = null)
     {
     	$form = $this->createForm(ContactType::class)->createView();
-        return $this->render('default/test.html.twig', array(
+        return $this->render($path ? "dev/$path.html.twig" : 'default/test.html.twig', array(
             'form' => $form
         ));
     }
