@@ -1,10 +1,14 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Event\SendEmailEvent;
 use AppBundle\Form\ResetType;
+use AppBundle\Util\TokenGenerator;
 use AppBundle\Util\TokenGeneratorInterface;
+use AppBundle\Util\UserManager;
 use AppBundle\Util\UserManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -62,22 +66,29 @@ class SecurityController extends Controller
     public function sendEmailAction(Request $request)
     {
         $username = $request->request->get('_username');
+        $um = $this->get(UserManager::class);
 
-        $user = $this->get('AppBundle\Util\UserManagerInterface::class')->findUserByUsernameOrEmail($username);
+        $user = $um->findUserByUsernameOrEmail($username);
 
         if ($user !== null && $user->isPasswordRequestNonExpired()) {
             if (null === $user->getConfirmationToken()) {
                 /** @var $tokenGenerator TokenGeneratorInterface */
-                $tokenGenerator = $this->get('app.token_generator');
+                $tokenGenerator = $this->get(TokenGenerator::class);
                 $user->setConfirmationToken($tokenGenerator->generateToken());
             }
 
-            $message = $this->get('app.mail_generator')->getMessage('reset_email', array('user' => $user));
-            $message->setFrom('noreply@'.$this->getParameter('site_domain'))
-                ->setTo($user->getEmailCanon());
-            $this->get('mailer')->send($message);
+            $dispatcher = $this->get('event_dispatcher');
+            $dispatcher->dispatch(
+            	SendEmailEvent::NAME,
+	            new SendEmailEvent(
+	            	$user->getEmailCanon(),
+		            ['user' => $user],
+		            'reset_email',
+		            'noreply@'.$this->getParameter('site_domain')));
+	        dump('HEY!');
+
             $user->setPasswordRequestedAt(new \DateTime());
-            $this->get('AppBundle\Util\UserManagerInterface::class')->updateUser($user);
+            $um->updateUser($user);
         }
 
         return $this->redirectToRoute('resetting_check_email', array('username' => $username));
@@ -104,7 +115,7 @@ class SecurityController extends Controller
     public function resetAction(Request $request, $token)
     {
         /** @var $userManager UserManagerInterface */
-        $userManager = $this->get('AppBundle\Util\UserManagerInterface::class');
+        $userManager = $this->get(UserManager::class);
 
         $user = $userManager->findUserByConfirmationToken($token);
 

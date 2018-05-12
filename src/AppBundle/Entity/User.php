@@ -156,7 +156,7 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
 	/**
 	 * @var ArrayCollection
 	 *
-	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Job", mappedBy="posted")
+	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Job", mappedBy="poster")
 	 */
 	private $jobsPosted;
 
@@ -645,10 +645,10 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     {
         $now = new \DateTime("-1 day");
         if ($this->passwordRequestedAt && $this->passwordRequestedAt >= $now) {
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     /**

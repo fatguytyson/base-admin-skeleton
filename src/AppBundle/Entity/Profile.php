@@ -65,6 +65,13 @@ class Profile
     private $rating;
 
 	/**
+	 * @var User
+	 *
+	 * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="profile")
+	 */
+    private $user;
+
+	/**
 	 * @var ArrayCollection
 	 *
 	 * @ORM\OneToMany(targetEntity="AppBundle\Entity\Rating", mappedBy="target")
