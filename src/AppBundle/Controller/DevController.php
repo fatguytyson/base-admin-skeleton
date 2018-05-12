@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DevController extends Controller
 {
     /**
-     * @Route("/{path}", requirements={"path"=".*"})
+     * @Route("/{path}", name="liz_dev", requirements={"path"=".*"})
      */
     public function testAction($path = null)
     {
