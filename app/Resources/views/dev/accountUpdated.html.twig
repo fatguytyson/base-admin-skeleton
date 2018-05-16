@@ -1,0 +1,33 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation for Sites</title>
+    <link rel="stylesheet" href="{{ asset('lizdev/css/foundation.css') }}">
+    <link rel="stylesheet" href="{{ asset('lizdev/css/app.css') }}">
+  </head>
+  <body>
+  <table class="body" data-made-with-foundation>
+    <tr>
+      <!-- The class, align, and <center> tag center the container -->
+      <td class="float-center" align="center" valign="top">
+          <!-- The content of your email goes here. -->
+          <h1 style="padding:60px 20px; text-align:center; background: #333; color: #fff;">Profile Changed</h1>
+          <p style="text-align:center; padding: 20px 20px;">
+              Congrats! Your profile has been updated/changed.
+              <br /><br />
+              If you executed this change, you're good to go, and you can ignore this e-mail. 
+              <br /><br />
+              If you <strong>DID NOT</strong> execute this change, we recommend that you <strong><a href="#" target="_blank" style="color:#FF0000;">change your password immediately</a></strong>.
+          </p>
+      </td>
+    </tr>
+  </table>
+    <script src="{{ asset('lizdev/js/vendor/jquery.js') }}"></script>
+    <script src="{{ asset('lizdev/js/vendor/what-input.js') }}"></script>
+    <script src="{{ asset('lizdev/js/vendor/foundation.min.js') }}"></script>
+    <script src="{{ asset('lizdev/js/app.js') }}"></script>
+  </body>
+</html>

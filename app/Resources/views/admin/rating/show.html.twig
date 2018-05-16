@@ -1,0 +1,42 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Rating{{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">Rating</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ rating.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Rate</th>
+                            <td>{{ rating.rate }}</td>
+                        </tr>
+                        <tr>
+                            <th>Comment</th>
+                            <td>{{ rating.comment }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel-footer">
+                                        <a href="{{ path('admin_rating_index') }}" class="btn btn-default">Back to the list</a>
+<a href="{{ path('admin_rating_edit', { 'id': rating.id }) }}" class="btn btn-warning">Edit</a><div class="pull-right">
+    {{ form_start(delete_form) }}
+    <input type="submit" value="Delete" class="btn btn-danger">
+    {{ form_end(delete_form) }}
+</div></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

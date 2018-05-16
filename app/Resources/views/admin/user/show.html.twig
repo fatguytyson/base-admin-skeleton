@@ -1,0 +1,86 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}User{{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">User</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ user.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Username</th>
+                            <td>{{ user.username }}</td>
+                        </tr>
+                        <tr>
+                            <th>Usernamecanon</th>
+                            <td>{{ user.usernameCanon }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Emailcanon</th>
+                            <td>{{ user.emailCanon }}</td>
+                        </tr>
+                        <tr>
+                            <th>Enabled</th>
+                            <td>{% if user.enabled %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Password</th>
+                            <td>{{ user.password }}</td>
+                        </tr>
+                        <tr>
+                            <th>Lastlogin</th>
+                            <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Expired</th>
+                            <td>{% if user.expired %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Expiresat</th>
+                            <td>{% if user.expiresAt %}{{ user.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Locked</th>
+                            <td>{% if user.locked %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Confirmationtoken</th>
+                            <td>{{ user.confirmationToken }}</td>
+                        </tr>
+                        <tr>
+                            <th>Passwordrequestedat</th>
+                            <td>{% if user.passwordRequestedAt %}{{ user.passwordRequestedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Roles</th>
+                            <td>{% if user.roles %}{{ user.roles|join(', ') }}{% endif %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel-footer">
+                                        <a href="{{ path('admin_user_index') }}" class="btn btn-default">Back to the list</a>
+<a href="{{ path('admin_user_edit', { 'id': user.id }) }}" class="btn btn-warning">Edit</a><div class="pull-right">
+    {{ form_start(delete_form) }}
+    <input type="submit" value="Delete" class="btn btn-danger">
+    {{ form_end(delete_form) }}
+</div></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

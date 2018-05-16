@@ -1,0 +1,75 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Profiles list{{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">Profiles list</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="pull-right"><a href="{{ path('admin_profile_new') }}" class="btn btn-xs btn-success">Create a new profile</a></div>
+                    Profiles
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-hover" id="index-table" style="width: 100%;">
+                        <thead>
+                        <tr>
+                                                                                                <th data-priority="1">Id</th>
+                                                                                                                            <th>Name</th>
+                                                                                                                            <th>Phone</th>
+                                                                                                                            <th>Truck</th>
+                                                                                                                            <th>Location</th>
+                                                                                                                            <th>Stripeuser</th>
+                                                                                                                            <th>Rating</th>
+                                                                                        <th data-priority="2">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for profile in profiles %}
+                        <tr>
+                                    <td><a href="{{ path('admin_profile_show', { 'id': profile.id }) }}">{{ profile.id }}</a></td>
+                                    <td>{{ profile.name }}</td>
+                                    <td>{{ profile.phone }}</td>
+                                    <td>{{ profile.truck }}</td>
+                                    <td>{{ profile.location }}</td>
+                                    <td>{{ profile.stripeUser }}</td>
+                                    <td>{{ profile.rating }}</td>
+                                    <td>
+                                            <a href="{{ path('admin_profile_show', { 'id': profile.id }) }}" class="btn btn-show">Show</a>
+                                            <a href="{{ path('admin_profile_edit', { 'id': profile.id }) }}" class="btn btn-edit">Edit</a>
+                                    </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('vendor/datatables/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/datatables-responsive/dataTables.responsive.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables-plugins/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables-responsive/dataTables.responsive.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#index-table').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+{% endblock %}

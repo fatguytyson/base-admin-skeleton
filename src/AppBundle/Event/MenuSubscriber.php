@@ -30,10 +30,10 @@ class MenuSubscriber implements EventSubscriberInterface
 	}
 
 	public function onDiscoverMenu(DiscoverMenuEvent $event) {
-		$menu = new Menu();
-		$menu->setGroup('user');
-		$menu->setName('Dynamic Menu Item');
-		$event->addMenuItem($menu); // Add all the menu items you want.
+//		$menu = new Menu();
+//		$menu->setGroup('user');
+//		$menu->setName('Dynamic Menu Item');
+//		$event->addMenuItem($menu); // Add all the menu items you want.
 	}
 
 }

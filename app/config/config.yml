@@ -98,9 +98,26 @@ fgc_menu:
                 order: 1
                 icon: list
                 role: ROLE_USER
+            Update Account:
+                route: app_user_profile_account
+                order: 2
+                icon: user
+                role: ROLE_USER
+            Update Password:
+                route: app_user_profile_password
+                order: 3
+                icon: star
+                role: ROLE_USER
+            Exit Impersonation:
+                route: admin_dashboard
+                routeOptions:
+                    _switch_user: _exit
+                order: 4
+                icon: sign-out
+                role: ROLE_PREVIOUS_ADMIN
             Logout:
                 route: logout
-                order: 2
+                order: 5
                 icon: sign-out
         user_user:
             Admin Area:
@@ -108,9 +125,26 @@ fgc_menu:
                 order: 1
                 icon: list
                 role: ROLE_ADMIN
+            Update Account:
+                route: app_user_profile_account
+                order: 2
+                icon: user
+                role: ROLE_USER
+            Update Password:
+                route: app_user_profile_password
+                order: 3
+                icon: star
+                role: ROLE_USER
+            Exit Impersonation:
+                route: admin_dashboard
+                routeOptions:
+                    _switch_user: _exit
+                order: 4
+                icon: sign-out
+                role: ROLE_PREVIOUS_ADMIN
             Logout:
                 route: logout
-                order: 2
+                order: 5
                 icon: sign-out
 #        default:
 #            Home:

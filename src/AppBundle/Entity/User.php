@@ -9,12 +9,15 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @UniqueEntity("username", groups={"register", "change"})
+ * @UniqueEntity("email", groups={"register", "change"})
  */
 class User implements AdvancedUserInterface, EquatableInterface, \Serializable
 {
@@ -31,8 +34,8 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     /**
      * @var string
      *
-     * @Assert\NotBlank(message="You must enter a username.")
-     * @Assert\Length(min="3", max="25")
+     * @Assert\NotBlank(message="You must enter a username.", groups={"register", "change"})
+     * @Assert\Length(min="3", max="25", groups={"register", "change"})
      * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     private $username;
@@ -47,7 +50,8 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
     /**
      * @var string
      *
-     * @Assert\NotBlank(message="You must enter an email.")
+     * @Assert\NotBlank(message="You must enter an email.", groups={"register", "change"})
+     * @Assert\Email(groups={"register", "change"})
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
@@ -78,8 +82,8 @@ class User implements AdvancedUserInterface, EquatableInterface, \Serializable
      *
      * @var string
      *
-     * @Assert\NotBlank(message="A password is required.")
-     * @Assert\Length(min="16")
+     * @Assert\NotBlank(message="A password is required.", groups={"register", "change"})
+     * @Assert\Length(min="16", groups={"register", "change"})
      */
     private $plainPassword;
 

@@ -1,0 +1,82 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Job{{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="page-header">Job</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ job.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Title</th>
+                            <td>{{ job.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ job.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ job.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Location</th>
+                            <td>{{ job.location }}</td>
+                        </tr>
+                        <tr>
+                            <th>Destination</th>
+                            <td>{{ job.destination }}</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td>{{ job.price }}</td>
+                        </tr>
+                        <tr>
+                            <th>Apikey</th>
+                            <td>{{ job.apikey }}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>{{ job.status }}</td>
+                        </tr>
+                        <tr>
+                            <th>Completeuser</th>
+                            <td>{{ job.completeUser }}</td>
+                        </tr>
+                        <tr>
+                            <th>Completemember</th>
+                            <td>{{ job.completeMember }}</td>
+                        </tr>
+                        <tr>
+                            <th>Ratinguser</th>
+                            <td>{% if job.ratingUser %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Ratingmember</th>
+                            <td>{% if job.ratingMember %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel-footer">
+                                        <a href="{{ path('admin_job_index') }}" class="btn btn-default">Back to the list</a>
+<a href="{{ path('admin_job_edit', { 'id': job.id }) }}" class="btn btn-warning">Edit</a><div class="pull-right">
+    {{ form_start(delete_form) }}
+    <input type="submit" value="Delete" class="btn btn-danger">
+    {{ form_end(delete_form) }}
+</div></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
