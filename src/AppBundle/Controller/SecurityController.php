@@ -85,7 +85,6 @@ class SecurityController extends Controller
 		            ['user' => $user],
 		            'reset_email',
 		            'noreply@'.$this->getParameter('site_domain')));
-	        dump('HEY!');
 
             $user->setPasswordRequestedAt(new \DateTime());
             $um->updateUser($user);
