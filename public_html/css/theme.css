@@ -1534,3 +1534,42 @@ label.error {
         margin-top:240px;
     }
 }
+
+/* new */
+/*header#home > .relative.full-wh {
+  display: table-cell;
+  width: 1%;
+  height: 100vh;
+  vertical-align: middle;
+}
+header#home .full-wh {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+header#home .slide-background-container {
+  position: relative !important;
+}
+header#home #text1 {
+  margin-top: 0;
+}*/
+
+#home .slide-caption {
+  text-align: center;
+  padding: 5vh 0;
+}
+#home .slide-caption > h1 {
+  font-size: 40px;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 45px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #333;
+}
+#home .slide-caption > .thumb {
+  margin: 25px auto;
+}
+#home .slide-caption > .thumb > img {
+  width: 100%;
+}

@@ -96,33 +96,39 @@
                 <div class="text-center">
                     <h4>"Your Friend With A Truck"</h4>
                 </div>
-                <div class="col-md-12 slide-background-container" style="position:absolute;" >
-                    <img class="fadeIn slide-background" style="max-width:100%;" src="{{ asset('images/truck_bg.png') }}">
-                </div>
-                <div class="col-12">
-                    <div class="full-wh">
-                        <div id="text1" class="home-lead animated wow fadeInLeft text-center" data-wow-duration="1.3s" data-wow-delay="0.3s">
-                            <p class="slide-text" style="color: black;">Make Money With Your Truck</p>
-                        </div>
+                {#<div class="col-md-12 slide-background-container" style="position:absolute;" >#}
+                    {#<img class="fadeIn slide-background" style="max-width:100%;" src="{{ asset('images/truck_bg.png') }}">#}
+                {#</div>#}
+                {#<div class="col-12">#}
+                    {#<div class="full-wh">#}
+                        {#<div id="text1" class="home-lead animated wow fadeInLeft text-center" data-wow-duration="1.3s" data-wow-delay="0.3s">#}
+                            {#<p class="slide-text" style="color: black;">Make Money With Your Truck</p>#}
+                        {#</div>#}
                         {#<div id="text2" style="display:none;position:absolute;">#}
                             {#<p class="slide-text">Fill Out Your Profile</p>#}
                         {#</div>#}
                         {#<div id="text3" style="display:none;position:absolute;">#}
                             {#<p class="slide-text">Sign Up Now To Get 1 Year Free! ($120 Value)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#sign-up">SIGN UP</a></a></p>#}
                         {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+
+                {#<div class="col-md-6 text-center hidden-sm hidden-xs" style="position:relative;padding-top:80px;">#}
+                    {#<div id="phone_truck" class="full-wh" style="position:absolute; display:none;">#}
+                        {#<img style="width:440px;" src="{{ asset('images/phone_truck.png') }}" class="animated wow" data-wow-duration="2s">#}
+                    {#</div>#}
+                    {#<div id="couch_truck" class="full-wh" style="position:absolute;">#}
+                        {#<img style="width:440px" src="{{ asset('images/couch.png') }}" class="animated wow fadeInRight" data-wow-duration="2s">#}
+                    {#</div>#}
+
+                {#</div>#}
+                <div class="slide-caption">
+                    <h1 class="animated wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.3s">Make Money</h1>
+                    <div class="thumb">
+                        <img class="animated wow fadeInRight" data-wow-duration="1.3s" data-wow-delay="0.3s" src="/images/Hawlit_Truck_w_Guy.png">
                     </div>
+                    <h1 class="animated wow fadeInDown" data-wow-duration="1.3s" data-wow-delay="0.3s">With Your Truck</h1>
                 </div>
-
-                <div class="col-md-6 text-center hidden-sm hidden-xs" style="position:relative;padding-top:80px;">
-                    <div id="phone_truck" class="full-wh" style="position:absolute; display:none;">
-                        <img style="width:440px;" src="{{ asset('images/phone_truck.png') }}" class="animated wow" data-wow-duration="2s">
-                    </div>
-                    <div id="couch_truck" class="full-wh" style="position:absolute;">
-                        <img style="width:440px" src="{{ asset('images/couch.png') }}" class="animated wow fadeInRight" data-wow-duration="2s">
-                    </div>
-
-                </div>
-
 
             </div>
         </div>
@@ -150,7 +156,10 @@
                     <!-- Contact Form -->
                     <div class="col-md-8 col-md-offset-2 contact-form">
 
-                        <h3 style="text-align:center;margin-bottom:30px;">Hawlit.com will send paying job blasts right to your phone pick the ones you want!</h3>
+                        <h3 style="text-align:center;margin-bottom:30px;">
+                            {#Hawlit.com will send paying job blasts right to your phone pick the ones you want!#}
+                            Get paying jobs sent to your phone!
+                        </h3>
                         {{ form_start(form, {attr:{class:"form-ajax"}}) }}
                             <div class="row">
                                 <div class="form-group col-md-6">
