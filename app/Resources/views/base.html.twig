@@ -4,9 +4,15 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block meta %}
-        {% if author is defined %}<meta name="author" content="{{ author }}">{% endif %}
-        {% if description is defined %}<meta name="description" content="{{ description }}">{% endif %}
-        {% if keywords is defined %}<meta name="keywords" content="{{ keywords }}">{% endif %}
+        {% if author is defined %}
+            <meta name="author" content="{{ author }}">
+        {% endif %}
+        {% if description is defined %}
+            <meta name="description" content="{{ description }}">
+        {% endif %}
+        {% if keywords is defined %}
+            <meta name="keywords" content="{{ keywords }}">
+        {% endif %}
         <meta name="canonical" content="{{ canonical is defined ? canonical : url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">
     {% endblock %}
     <title>{% block title %}{{ site_name }} - {{ site_tag }}{% endblock %}</title>

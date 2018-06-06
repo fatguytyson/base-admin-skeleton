@@ -42,6 +42,12 @@ class Contact
      */
     private $truck;
 
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="zip_code", type="string", length=255)
+	 */
+    private $zipCode;
 
     /**
      * Get id.
@@ -123,5 +129,29 @@ class Contact
     public function getTruck()
     {
         return $this->truck;
+    }
+
+    /**
+     * Set zipCode.
+     *
+     * @param string $zipCode
+     *
+     * @return Contact
+     */
+    public function setZipCode($zipCode)
+    {
+        $this->zipCode = $zipCode;
+
+        return $this;
+    }
+
+    /**
+     * Get zipCode.
+     *
+     * @return string
+     */
+    public function getZipCode()
+    {
+        return $this->zipCode;
     }
 }

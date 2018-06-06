@@ -10,6 +10,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,11 +34,18 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add('truck', TextType::class, [
-                'label' => 'Subject',
+                'label' => 'Make & Model of Truck',
                 'attr' => [
                     'placeholder' => 'Make & Model of Truck'
                 ]
             ])
+	        ->add('zipCode', NumberType::class, [
+	        	'label' => 'Zip Code',
+			        'attr' => [
+			        	'placeholder' => 'Zip Code *'
+			        ]
+		        ]
+	        )
 //            ->add('message', TextareaType::class, [
 //                'label' => 'Message',
 //                'attr' => [
