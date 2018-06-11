@@ -168,7 +168,7 @@ class DefaultController extends Controller
                 $ret['form'] = $form->createView();
                 break;
             case 'events':
-                $ret['events'] = $em->getRepository('AppBundle:Event')->findBy([],['date' => 'ASC']);
+                $ret['events'] = $em->getRepository('AppBundle:Event')->findUpcoming();
                 break;
         }
         return $ret;

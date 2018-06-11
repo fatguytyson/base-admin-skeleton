@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class EventRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findUpcoming() {
+		return $this->createQueryBuilder('e')
+			->where('e.date >= :today')
+			->setParameter('today', new \DateTime())
+			->orderBy('e.date', 'ASC')
+			->getQuery()
+			->getResult()
+			;
+	}
 }
